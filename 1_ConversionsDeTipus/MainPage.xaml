@@ -9,12 +9,31 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Orientation="Horizontal">
-        <StackPanel Orientation="Vertical" Padding="20" Background="Lime">
-            <TextBlock>Números</TextBlock>
-            <TextBox></TextBox>
-            <Button HorizontalAlignment="Stretch" Content="Go"></Button>
-            <TextBox></TextBox>
+        <!-- Primer exercici -->
+        <StackPanel Orientation="Vertical" Padding="20" Background="#FFCDA4CD" MaxWidth="400">
+            <TextBlock>Introduir Número</TextBlock>
+            <TextBox x:Name="txbNumero"/>
+            <Button HorizontalAlignment="Stretch" Content="Parse" Click="Parse_Click"></Button>
+            <StackPanel Orientation="horizontal">
+                <TextBlock Width="100">Català:</TextBlock>
+                <TextBox x:Name="txbCatala"/>
+            </StackPanel>   
+            <StackPanel Orientation="horizontal">
+                <TextBlock Width="100">Anglès:</TextBlock>
+                <TextBox x:Name="txbAngles"/>
+            </StackPanel>
+ 
         </StackPanel>
-        <StackPanel Orientation="Vertical"></StackPanel>
+        <!-- Segon exercici -->
+        <StackPanel Orientation="Vertical" Padding="20">
+            <TextBlock>Introduir Número</TextBlock>
+            <TextBox x:Name="txbNumero2"/>
+            
+            <RadioButton Content="Català" GroupName="RGIdiomaSeleccionat" x:Name="rdoCatala" />
+            <RadioButton Content="Anglès"  GroupName="RGIdiomaSeleccionat"  x:Name="rdoAngles" />
+                        
+            <Button HorizontalAlignment="Stretch" Content="Parse" Click="Parse2_Click"></Button>
+            <TextBox x:Name="txbResultat2"></TextBox>
+        </StackPanel>
     </StackPanel>
 </Page>
