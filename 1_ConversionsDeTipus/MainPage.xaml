@@ -35,5 +35,16 @@
             <Button HorizontalAlignment="Stretch" Content="Parse" Click="Parse2_Click"></Button>
             <TextBox x:Name="txbResultat2"></TextBox>
         </StackPanel>
+        <!-- Tercer exercici: convertint dates -->
+        <StackPanel Orientation="Vertical" Padding="20" Background="#FFCDA4CD">
+            <TextBlock>Introduir Data</TextBlock>
+            <TextBox x:Name="txbDate"/>
+
+            <RadioButton Content="Català" GroupName="RGIdiomaSeleccionatData" x:Name="rdoCatalaData" />
+            <RadioButton Content="Anglès"  GroupName="RGIdiomaSeleccionatData"  x:Name="rdoAnglesData" />
+
+            <Button HorizontalAlignment="Stretch" Content="Parse" Click="Parse_Data_Click"></Button>
+            <TextBox x:Name="txbResultatData"></TextBox>
+        </StackPanel>
     </StackPanel>
 </Page>

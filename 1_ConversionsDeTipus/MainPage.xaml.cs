@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -26,8 +27,46 @@ namespace ConversionsDeTipus
         public MainPage()
         {
             this.InitializeComponent();
+            rdoCatala.IsChecked = true;
+            rdoCatalaData.IsChecked = true;
+            ProvesAmbDate();
         }
 
+        // - - - - - - - -
+        private void ProvesAmbDate()
+        {
+            DateTime unaData = new DateTime(2010, 10, 30);// yy,mm,dd
+            DateTime unaDataAmbHora = new DateTime(2010, 10, 30, 14, 56,32); // yy,mm,dd,hh,mm,ss
+
+            DateTime avui = DateTime.Today;
+            DateTime ara = DateTime.Now;
+
+            DateTime dema = avui.AddDays(+1);
+            DateTime ahir = avui.AddDays(-1);
+
+            double diferenciaEnHores = avui.Subtract(ahir).TotalHours;
+            double diferenciaEnDies = avui.Subtract(ahir).TotalDays;
+
+            if(dema>ahir)
+            {
+                //el món té sentit
+            } else
+            {
+                //UAAAAAAAAAAAAAAAALA !
+            }
+
+            try
+            {
+                DateTime unaDataExplosiva = new DateTime(2010, 10, 32);// yy,mm,dd
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("Data errònia");
+            }
+
+
+
+        }
         
 
         private void TexboxColorizer(bool esCorrecte, TextBox t)
@@ -75,7 +114,7 @@ namespace ConversionsDeTipus
             
 
         }
-
+        // ----------------- SEGON EXERCICI ------------------------------
         private void Parse2_Click(object sender, RoutedEventArgs e)
         {
             double resultat;
@@ -94,10 +133,61 @@ namespace ConversionsDeTipus
             
                        
             bool exit = Double.TryParse(numeroText, style, idioma, out resultat);
-            if(exit)
+            TexboxColorizer(exit, txbNumero2);
+            if (exit)
             {
                 txbResultat2.Text = resultat.ToString("#,###,###.000");
             }
+        }
+        // ----------------- TERCER EXERCICI ------------------------------
+
+        private void Parse_Data_Click(object sender, RoutedEventArgs e)
+        {
+            string cadenaData = txbDate.Text;
+            bool conversioCorrecta = false;
+            try
+            {
+                DateTime data = DateTime.ParseExact(
+                                    cadenaData,
+                                    "dd/MM/yyyy",
+                                     System.Globalization.CultureInfo.InvariantCulture);
+
+                conversioCorrecta = true;
+                // conversió al format desitjat
+                CultureInfo idioma;
+                if (rdoAnglesData.IsChecked == true) {
+                    idioma = new CultureInfo("en-UK");                    
+                }
+                else
+                {
+                    idioma = new CultureInfo("ca-ES");
+                }
+
+                txbResultatData.Text = data.ToString("dddd, d MMMM \\de yyyy", idioma);
+
+                string sufix;
+                switch(data.Day)
+                {
+                    case 1:
+                    case 31:    sufix = "st"; break;
+                    case 2:     sufix = "nd"; break;
+                    case 3:     sufix = "rd"; break;
+                    default:    sufix = "th"; break;
+                }
+
+                txbResultatData.Text =      data.ToString("dddd", idioma)+"," +
+                                            data.ToString("MMMM", idioma) + " the " +
+                                            data.Day + sufix;
+
+            }
+            catch(Exception ex)
+            {
+                conversioCorrecta = false;
+            }
+            // Pintem el textbox segons si està bé o malament
+            TexboxColorizer(conversioCorrecta, txbDate);
+  
+
         }
     }
 }
