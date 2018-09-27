@@ -186,7 +186,10 @@ namespace ConversionsDeTipus
             }
             // Pintem el textbox segons si està bé o malament
             TexboxColorizer(conversioCorrecta, txbDate);
-  
+
+         
+
+            
 
         }
     }
