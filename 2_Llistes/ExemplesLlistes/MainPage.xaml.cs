@@ -71,10 +71,12 @@ namespace ExemplesLlistes
             girona.Add("Portu");
             girona.Add("Bernardo");
             jugadors_x_equip.Add(girona);
-
+            //----------------------------------------------
             jugadors_x_equip[1][1] = "Portu enhanced";
             jugadors_x_equip[1].Add("Adai");
             girona.Add("Adai");
+            
+            //---------------------------------------------
         }
 
         private void MostraLlista( List<int> llista)
