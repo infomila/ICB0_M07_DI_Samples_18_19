@@ -24,7 +24,7 @@ namespace App1
     {
         //        nom_equip    nom_jugador
         private Dictionary<string, List<string>> equips;
-        //   Girona --> { Estuani, Josue, ...... }
+        //   GirClass1.csona --> { Estuani, Josue, ...... }
 
         private List<string> jugadorsEquipSeleccionat;
 
