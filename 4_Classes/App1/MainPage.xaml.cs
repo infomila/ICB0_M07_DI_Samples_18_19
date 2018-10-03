@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App1.model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,38 +23,21 @@ namespace App1
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        //        nom_equip    nom_jugador
-        private Dictionary<string, List<string>> equips;
-        //   GirClass1.csona --> { Estuani, Josue, ...... }
-
-        private List<string> jugadorsEquipSeleccionat;
-
-
+        List<Equip> equips;
+        Equip mEquipSeleccionat;
 
         public MainPage()
         {
             this.InitializeComponent();
 
-            equips = new Dictionary<string, List<string>>();
-            //---------------------------------------------------
-            List<string> jugadorsGirona = new List<string>();
-            jugadorsGirona.Add("Estuani");
-            jugadorsGirona.Add("Pepet");
-            jugadorsGirona.Add("Joanet");
-            jugadorsGirona.Add("Cigronet");
-            //equips.Add("Girona", jugadorsGirona);
-            equips["Girona"] = jugadorsGirona;
-            //---------------------------------------------------
-            List<string> jugadorBarsa = new List<string>();
-            string[] noms = new string[]{"Messi", "Pique", "Ter Stegen" };
-            jugadorBarsa.AddRange(noms.ToList<string>());
-            equips["Barça"] = jugadorBarsa;
+            //---------------------------------------------
+            equips = Equip.CrearEquips();
             //-------------------------------------------
             //
             // Recórrer les claus del diccionari per obtenir la llista d'equips
-            foreach (string equip in  equips.Keys)
+            foreach (Equip equip in  equips)
             {
-                cboEquips.Items.Add(equip);
+                cboEquips.Items.Add(equip.Id +"-"+equip.Nom);
             }
             // seleccionem la primera opció del ComboBox
             if (cboEquips.Items.Count > 0) // primer verifiquem que hi hagi algun ítem !!
@@ -75,11 +59,13 @@ namespace App1
         private void RefreshLlistaJugadors()
         {
             lsbJugadors.Items.Clear();
-            jugadorsEquipSeleccionat = equips[cboEquips.SelectedItem.ToString()];
-            jugadorsEquipSeleccionat.Sort();
-            foreach (string jugador in jugadorsEquipSeleccionat)
+            mEquipSeleccionat = equips[cboEquips.SelectedIndex];
+            
+            foreach (Jugador jugador in mEquipSeleccionat.Jugadors)
             {
-                lsbJugadors.Items.Add(jugador);
+                lsbJugadors.Items.Add("("+jugador.Dorsal+")"+
+                                            jugador.Cognoms+","+
+                                            jugador.Nom);
             }
             verificaNomNouJugador();
         }
@@ -99,9 +85,9 @@ namespace App1
                 //string nomEquipSeleccionat = cboEquips.SelectedValue.ToString();
                 //List<string> jugadors = equips[nomEquipSeleccionat];
                 bool repetitTrobat = false;
-                foreach(string j in jugadorsEquipSeleccionat)
+                foreach(Jugador j in mEquipSeleccionat.Jugadors)
                 {
-                    if (j.ToLower().Equals(nomJugadorFiltrat.ToLower()))
+                    if (j.Nom.ToLower().Equals(nomJugadorFiltrat.ToLower()))
                     {
                         repetitTrobat = true;
                         break;
@@ -122,7 +108,11 @@ namespace App1
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-            jugadorsEquipSeleccionat.Add(txbNouJugador.Text.Trim());
+            Jugador nouJugador =
+                new Jugador(666, 
+                            txbNouJugador.Text.Trim(), 
+                            txbNouJugador.Text.Trim());
+            mEquipSeleccionat.Jugadors.Add(nouJugador);
             RefreshLlistaJugadors();
             
         }
@@ -139,7 +129,7 @@ namespace App1
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
-            jugadorsEquipSeleccionat.RemoveAt(lsbJugadors.SelectedIndex);
+            mEquipSeleccionat.Jugadors.RemoveAt(lsbJugadors.SelectedIndex);            
             RefreshLlistaJugadors();
             
         }
