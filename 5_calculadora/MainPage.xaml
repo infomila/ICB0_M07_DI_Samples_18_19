@@ -1,0 +1,69 @@
+﻿<Page
+    x:Class="_5_calculadora.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_5_calculadora"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <!--Definim l'estil dels botons numèrics -->
+        <Style x:Key="EstilBotoNumero" TargetType="Button">
+            <Setter Property="FontSize" Value="23"></Setter>
+            <Setter Property="Margin" Value="4"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+        </Style>
+    </Page.Resources>
+    <Grid x:Name="grdCalc">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+            <ColumnDefinition Width="60"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" 
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+            Background="Black">
+            <TextBlock 
+                x:Name="txbDisplay"
+                     Foreground="Lime"
+                     Text="1234"
+                     FontSize="35"
+                     TextAlignment="End" 
+                     FontFamily="Seven Segment"
+                     ></TextBlock>
+        </Border>
+        <!-- ============================= -->
+        <!-- ====      BOTONS          === -->
+        <!-- ============================= -->
+        <Button Content="7" x:Name="btn7" Click="Button_Click" Grid.Row="1" Grid.Column="0" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="8" Click="Button_Click" Grid.Row="1" Grid.Column="1" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="9" Click="Button_Click" Grid.Row="1" Grid.Column="2" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="4" Click="Button_Click" Grid.Row="2" Grid.Column="0" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="5" Click="Button_Click" Grid.Row="2" Grid.Column="1" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="6" Click="Button_Click" Grid.Row="2" Grid.Column="2" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="1" Click="Button_Click" Grid.Row="3" Grid.Column="0" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="2" Click="Button_Click" Grid.Row="3" Grid.Column="1" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="3" Click="Button_Click" Grid.Row="3" Grid.Column="2" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="0" Click="Button_Click" Grid.Row="4" Grid.Column="1" Style="{StaticResource EstilBotoNumero}"></Button>
+
+        <Button Content="+" Click="Operacio_Click" Grid.Row="1" Grid.Column="5" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="-" Click="Operacio_Click" Grid.Row="2" Grid.Column="5" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="*" Click="Operacio_Click" Grid.Row="3" Grid.Column="5" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="/" Click="Operacio_Click" Grid.Row="4" Grid.Column="5" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="=" Click="Operacio_Click" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Style="{StaticResource EstilBotoNumero}"></Button>
+        <Button Content="." Click="Operacio_Click" Grid.Row="5" Grid.Column="5" Style="{StaticResource EstilBotoNumero}"></Button>
+    </Grid>
+</Page>
