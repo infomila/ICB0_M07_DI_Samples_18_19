@@ -1,6 +1,7 @@
 ﻿using HelloBinding.model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,6 +25,8 @@ namespace HelloBinding
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<Persona> mPersones;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -47,19 +50,45 @@ namespace HelloBinding
             //cboPersones.Items.Add("Maria");
             // Queda abolida la utilització de Items, sota pena de capament dolorós i mort.
             //List<string> persones = new List<string> { "Paco", "Maria", "Pep", "Pau", "Pou" };
-            List<Persona> persones = Persona.GetLlistaPersones();
-            cboPersones.ItemsSource = persones;
-            lsvPersones.ItemsSource = persones;
+            mPersones = Persona.GetLlistaPersones();
+            cboPersones.ItemsSource = mPersones;
+            lsvPersones.ItemsSource = mPersones;
 
         }
 
         private void lsvPersones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            // si no hi ha res seleccionat, no tenim res a fer !!!!
+            if (lsvPersones.SelectedItem == null) return;
+
             Persona p = (Persona)lsvPersones.SelectedItem;
             txbId.Text = ""+p.Id;
             txbNom.Text = p.Nom;
             txbUrl.Text = p.UrlFoto;
             imgFotoGran.Source = new BitmapImage(new Uri(p.UrlFoto));
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            Persona p = (Persona)lsvPersones.SelectedItem;
+            try
+            {
+                p.Id = Int32.Parse(txbId.Text);
+            }
+            catch (Exception)
+            {
+            }
+            p.Nom = txbNom.Text;            
+            p.UrlFoto = txbUrl.Text;
+        }
+
+        private void btnDel_Click(object sender, RoutedEventArgs e)
+        {
+            if(lsvPersones.SelectedItem!=null)
+            {
+                mPersones.RemoveAt(lsvPersones.SelectedIndex);
+                //mPersones.Remove((Persona)lsvPersones.SelectedItem);
+            }
         }
     }
 }

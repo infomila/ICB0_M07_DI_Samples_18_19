@@ -1,13 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HelloBinding.model
 {
-    class Persona
+    class Persona : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            // Raise the PropertyChanged event, passing the name of the property whose value has changed.
+            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
         private int id;
         private string nom;
         private string urlFoto;
@@ -19,9 +32,9 @@ namespace HelloBinding.model
             this.UrlFoto = urlFoto;
         }
 
-        public int Id { get => id; set => id = value; }
-        public string Nom { get => nom; set => nom = value; }
-        public string UrlFoto { get => urlFoto; set => urlFoto = value; }
+        public int Id { get => id; set  { id = value; OnPropertyChanged(); } }
+        public string Nom { get => nom; set { nom = value; OnPropertyChanged(); } }
+        public string UrlFoto { get => urlFoto; set { urlFoto = value; OnPropertyChanged(); } }
 
         public string NomCompost { 
             get {
@@ -29,12 +42,14 @@ namespace HelloBinding.model
             }
         }
 
+
+
         //--------------------------------------------------------------
 
         // mètode per aconseguir una llista de persones
-        public static List<Persona> GetLlistaPersones()
+        public static ObservableCollection<Persona> GetLlistaPersones()
         {
-            List<Persona> persones = new List<Persona>();
+            ObservableCollection<Persona> persones = new ObservableCollection<Persona>();
             persones.Add(new Persona(10, "Paco", "http://www.pokexperto.net/pokemongo/pokemon/charmander.png"));
             persones.Add(new Persona(20, "Maria", "http://www.pokexperto.net/pokemongo/pokemon/charmeleon.png"));
             persones.Add(new Persona(30, "Mathew", "http://www.pokexperto.net/pokemongo/pokemon/charizard.png"));

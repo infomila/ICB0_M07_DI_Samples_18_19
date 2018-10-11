@@ -69,7 +69,11 @@
             <TextBox x:Name="txbId"   Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
             <TextBox x:Name="txbNom"  Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
             <TextBox x:Name="txbUrl"  Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
-            <Button Grid.Column="2" Grid.Row="3" Content="Save"></Button>
+
+            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3">
+                <Button x:Name="btnSave" Click="btnSave_Click"  Content="Save"> </Button>
+                <Button x:Name="btnDel" Margin="40,0,0,0" Click="btnDel_Click" Content="Delete"></Button>
+            </StackPanel>
 
 
         </Grid>
