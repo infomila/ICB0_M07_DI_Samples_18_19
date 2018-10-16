@@ -55,7 +55,7 @@ namespace HelloBinding
             lsvPersones.ItemsSource = mPersones;
 
         }
-
+        /*
         private void lsvPersones_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // si no hi ha res seleccionat, no tenim res a fer !!!!
@@ -67,7 +67,7 @@ namespace HelloBinding
             txbUrl.Text = p.UrlFoto;
             imgFotoGran.Source = new BitmapImage(new Uri(p.UrlFoto));
         }
-
+        *//*
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             Persona p = (Persona)lsvPersones.SelectedItem;
@@ -80,7 +80,7 @@ namespace HelloBinding
             }
             p.Nom = txbNom.Text;            
             p.UrlFoto = txbUrl.Text;
-        }
+        }*/
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
         {
@@ -89,6 +89,11 @@ namespace HelloBinding
                 mPersones.RemoveAt(lsvPersones.SelectedIndex);
                 //mPersones.Remove((Persona)lsvPersones.SelectedItem);
             }
+        }
+
+        private void lsvPersones_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            fpuFitxa.LaPersona = (Persona) lsvPersones.SelectedItem;
         }
     }
 }

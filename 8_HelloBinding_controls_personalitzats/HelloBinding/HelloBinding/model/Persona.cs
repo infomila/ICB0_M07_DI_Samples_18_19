@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HelloBinding.model
 {
-    class Persona : INotifyPropertyChanged
+    public class Persona : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -31,9 +31,22 @@ namespace HelloBinding.model
             this.Nom = nom;
             this.UrlFoto = urlFoto;
         }
+        public static bool ValidaNom(string nom, out string errMsg)
+        {
+            errMsg = "";
+            if (nom == null || nom.Trim().Length < 3)
+            {
+                errMsg = "Nom no vàlid.";
+                return false;
+            }
+            return true;
+        }
 
         public int Id { get => id; set  { id = value; OnPropertyChanged(); } }
-        public string Nom { get => nom; set { nom = value; OnPropertyChanged(); } }
+        public string Nom { get => nom; set {
+                string errMsg;
+                if (ValidaNom(value, out errMsg) == false) throw new Exception(errMsg);
+                nom = value; OnPropertyChanged(); } }
         public string UrlFoto { get => urlFoto; set { urlFoto = value; OnPropertyChanged(); } }
 
         public string NomCompost { 
