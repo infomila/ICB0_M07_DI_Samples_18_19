@@ -95,5 +95,18 @@ namespace HelloBinding
         {
             fpuFitxa.LaPersona = (Persona) lsvPersones.SelectedItem;
         }
+
+        private void btnAlta_Click(object sender, RoutedEventArgs e)
+        {
+            Persona p = new Persona();
+            fpuFitxa.LaPersona = p;
+            fpuFitxa.OnSave += FpuFitxa_OnSave;
+        }
+
+        private void FpuFitxa_OnSave(object sender, EventArgs e)
+        {
+            mPersones.Add(fpuFitxa.LaPersona);
+            fpuFitxa.OnSave -= FpuFitxa_OnSave;
+        }
     }
 }

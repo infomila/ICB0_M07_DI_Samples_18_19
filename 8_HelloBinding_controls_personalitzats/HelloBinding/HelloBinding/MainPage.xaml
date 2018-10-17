@@ -27,7 +27,7 @@
         <TextBox x:Name="txbSelectedValue"></TextBox>
         
         <ListView ItemsPanel="{StaticResource ListViewItemsPanel1}"  x:Name="lsvPersones"                  
-                  >
+                 SelectionChanged="lsvPersones_SelectionChanged_1" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -47,7 +47,7 @@
         
         <!-- ================================================================== -->
         <view:FitxaPersonaUI x:Name="fpuFitxa"
-                             LaPersona="{Binding SelectedItem, ElementName=lsvPersones}"
                              ></view:FitxaPersonaUI>
+        <Button x:Name="btnAlta" Click="btnAlta_Click" HorizontalAlignment="Center" Margin="10">Nova Persona</Button>
     </StackPanel>
 </Page>

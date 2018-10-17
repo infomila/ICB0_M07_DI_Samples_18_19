@@ -34,9 +34,9 @@
         <TextBlock Grid.Column="1" Grid.Row="0" Text="Id:" TextAlignment="Right"  VerticalAlignment="Center"></TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="1" Text="Nom:" TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
         <TextBlock Grid.Column="1" Grid.Row="2" Text="Url:" TextAlignment="Right" VerticalAlignment="Center"></TextBlock>
-        <TextBox x:Name="txbId"  Text="{Binding LaPersona.Id ,ElementName=userControl, Mode=OneWay}"  Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
-        <TextBox x:Name="txbNom" Text="{Binding LaPersona.Nom ,ElementName=userControl, Mode=OneWay}" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
-        <TextBox x:Name="txbUrl" Text="{Binding LaPersona.UrlFoto ,ElementName=userControl, Mode=OneWay}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
+        <TextBox x:Name="txbId" TextChanged="txb_TextChanged" Text="{Binding LaPersona.Id ,ElementName=userControl, Mode=OneWay}"  Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" Margin="10,0,0,0" ></TextBox>
+        <TextBox x:Name="txbNom" TextChanged="txb_TextChanged" Text="{Binding LaPersona.Nom ,ElementName=userControl, Mode=OneWay}" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
+        <TextBox x:Name="txbUrl" TextChanged="txb_TextChanged" Text="{Binding LaPersona.UrlFoto ,ElementName=userControl, Mode=OneWay}" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0"></TextBox>
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="3">
             <Button x:Name="btnSave" Click="btnSave_Click" Content="Save"></Button>
         </StackPanel>
