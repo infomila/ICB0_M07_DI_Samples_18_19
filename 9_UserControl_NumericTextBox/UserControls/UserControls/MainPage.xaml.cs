@@ -25,6 +25,17 @@ namespace UserControls
         public MainPage()
         {
             this.InitializeComponent();
+            ntbNumero.Value = 300;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txbOut.Text =  ""+ntbNumero.Value;
+        }
+
+        private void ntbNumero_ValueChanged(object sender, EventArgs e)
+        {
+            txbOut.Text = "" + ntbNumero.Value;
         }
     }
 }

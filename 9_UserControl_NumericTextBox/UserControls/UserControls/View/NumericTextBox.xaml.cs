@@ -21,6 +21,16 @@ namespace UserControls.View
 {
     public sealed partial class NumericTextBox : UserControl
     {
+
+
+        public event EventHandler ValueChanged;
+
+
+
+
+
+
+
         public NumericTextBox()
         {
             this.InitializeComponent();
@@ -40,18 +50,49 @@ namespace UserControls.View
 
 
 
-        public int Value
+        /*public long Value
         {
-            get { return (int)GetValue(ValueProperty); }
+            get
+            {
+
+                try
+                {
+                    return long.Parse(txbNumero.Text);
+                }
+                catch (Exception)
+                {
+                    return 0;
+                }                //return (int)GetValue(ValueProperty); }
+            }
             set {
-                SetValue(ValueProperty, value); }
+                txbNumero.Text = value.ToString();
+                SetValue(ValueProperty, value);
+            }
+        }*/
+
+        public long Value
+        {
+            get
+            {
+                return (long)GetValue(ValueProperty); 
+            }
+            set
+            {            
+                SetValue(ValueProperty, value);
+            }
         }
 
         // Using a DependencyProperty as the backing store for Value.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ValueProperty =
-            DependencyProperty.Register("Value", typeof(int), typeof(NumericTextBox), new PropertyMetadata(0));
+            DependencyProperty.Register("Value", typeof(long), typeof(NumericTextBox), 
+                new PropertyMetadata(0, ValueChangedCallback));
 
-    
+        private static void ValueChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            NumericTextBox nt = (NumericTextBox)d;
+            nt.txbNumero.Text = ""+nt.Value;
+        }
+
         private bool IsCtrlKeyPressed()
         {
             CoreVirtualKeyStates ctrlState = CoreWindow.GetForCurrentThread().GetKeyState(VirtualKey.Control);
@@ -77,6 +118,22 @@ namespace UserControls.View
         private void txbNumero_Paste(object sender, TextControlPasteEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void txbNumero_TextChanged(object sender, TextChangedEventArgs e)
+        {
+  
+             try
+            {
+                Value = long.Parse(txbNumero.Text);
+            }
+            catch (Exception)
+            {
+                Value= 0;
+            }
+
+
+            ValueChanged?.Invoke(this, new EventArgs()); // el valor ha canviat
         }
 
 

@@ -18,9 +18,11 @@
         <TextBlock Text="{Binding Label, ElementName=ntb}"                    
                    VerticalAlignment="Center"></TextBlock>
         <TextBox x:Name="txbNumero"
+                 TextChanged="txbNumero_TextChanged"
+                 MaxLength="10"
             HorizontalAlignment="Stretch" 
                  Paste="txbNumero_Paste"
                  KeyDown="TextBox_KeyDown"
-                 Grid.Column="2" VerticalAlignment="Center" Text="Demo"></TextBox>
+                 Grid.Column="2" VerticalAlignment="Center" Text="0"></TextBox>
     </Grid>
 </UserControl>
