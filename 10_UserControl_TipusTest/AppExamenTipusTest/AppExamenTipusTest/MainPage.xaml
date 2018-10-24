@@ -10,9 +10,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded"
     >
+    
 
     <StackPanel>
-        <view:PreguntaUI x:Name="puiPrimeraPregunta"></view:PreguntaUI>
-        <TextBox Text="{Binding Puntuacio, ElementName=puiPrimeraPregunta}"></TextBox>
-    </StackPanel>
+        <Button x:Name="btnPuntuacio" Click="btnPuntuacio_Click">Enviar resposta.</Button>
+        <TextBlock x:Name="txbPuntuacioExamen"></TextBlock>
+        <Border>
+            <ListView  x:Name="lsvPreguntes">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Plantilla usada per a cada element mostrat en el ListView -->
+                        <Border>
+                            <view:PreguntaUI LaPregunta="{Binding}"></view:PreguntaUI>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Border>
+     </StackPanel>
+
 </Page>

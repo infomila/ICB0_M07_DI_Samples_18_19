@@ -30,7 +30,22 @@ namespace AppExamenTipusTest
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            puiPrimeraPregunta.LaPregunta = Pregunta.getPreguntes()[0];
+            // Carreguem la llista de preguntes en el ListView
+            lsvPreguntes.ItemsSource = Pregunta.getPreguntes();
+        }
+
+        private void puiPrimeraPregunta_RespostaChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void btnPuntuacio_Click(object sender, RoutedEventArgs e)
+        {
+            decimal total = 0;
+            foreach (Pregunta p in Pregunta.getPreguntes())             
+            {
+                total += p.GetPuntuacio();
+            }
+            txbPuntuacioExamen.Text = total + " punts";
         }
     }
 }

@@ -20,6 +20,9 @@ namespace AppExamenTipusTest.View
 {
     public sealed partial class PreguntaUI : UserControl
     {
+        public event EventHandler RespostaChanged;
+
+
         public PreguntaUI()
         {
             this.InitializeComponent();
@@ -37,18 +40,7 @@ namespace AppExamenTipusTest.View
         public static readonly DependencyProperty LaPreguntaProperty =
             DependencyProperty.Register("LaPregunta", typeof(Pregunta), typeof(PreguntaUI), new PropertyMetadata(0, PreguntaChangedCallback));
 
- 
-        public Decimal Puntuacio
-        {
-            get { return (Decimal)GetValue(PuntuacioProperty); }
-            set { SetValue(PuntuacioProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Puntuacio.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty PuntuacioProperty =
-            DependencyProperty.Register("Puntuacio", typeof(Decimal), typeof(PreguntaUI), new PropertyMetadata(0));
-
-        #endregion
+         #endregion
         //-----------------------------------------------------------------------------------
 
 
@@ -72,7 +64,7 @@ namespace AppExamenTipusTest.View
             {
 
                 ToggleButton tb;
-
+                
                 if (pui.LaPregunta.EsMultiresposta)
                 {
                     tb = new CheckBox();
@@ -81,6 +73,8 @@ namespace AppExamenTipusTest.View
                 {
                    tb = new RadioButton();
                 }
+                tb.Tag = i;
+
                 // desem la referència del RadioButton o del Checkbox en una llista
                 pui.opcionsUI.Add(tb);
 
@@ -103,73 +97,20 @@ namespace AppExamenTipusTest.View
   
         private void Tb_Unchecked(object sender, RoutedEventArgs e)
         {
-            recalculaPuntuacio();            
+            //int index = opcionsUI.IndexOf((ToggleButton)sender);
+            ToggleButton tb =  (ToggleButton)sender;
+            LaPregunta.marcaOpcio((int)tb.Tag, false);
+            RespostaChanged?.Invoke(this, new EventArgs());
+            //recalculaPuntuacio();            
         }
 
         private void Tb_Checked(object sender, RoutedEventArgs e)
         {
-            recalculaPuntuacio();
+            ToggleButton tb = (ToggleButton)sender;
+            LaPregunta.marcaOpcio((int)tb.Tag, true);
+            RespostaChanged?.Invoke(this, new EventArgs());
+            //recalculaPuntuacio();
         }
 
-        private void recalculaPuntuacio()
-        {
-            int i = 0;
-            int encerts = 0;
-            int errors = 0;
-            if (LaPregunta.EsMultiresposta)  // MULTIRESPOSTA ===================================================
-            {
-                foreach (ToggleButton tb in opcionsUI)
-                {
-                    if (tb.IsChecked == true)
-                    {
-                        if (LaPregunta.esOpcioCorrecta(i))
-                        {
-                            encerts++;
-                        }
-                        else
-                        {
-                            encerts--;
-                        }
-                    }
-                    i++;
-                }
-                // la fòrmula és puntuació pregunta * encerts/número respostes vàlides
-                Puntuacio = LaPregunta.PuntuacioMaxima * (decimal)encerts / (decimal)LaPregunta.GetNumRespostesCorrectes();
-
-            }
-            else // RADIOBUTTON: mono resposta =================================================
-            {
-                errors = 0;
-                encerts = 0;
-                foreach (ToggleButton tb in opcionsUI)
-                {
-                    if (tb.IsChecked ==  true )
-                    {
-                        if (LaPregunta.esOpcioCorrecta(i))
-                        {
-                            encerts = 1;
-                            errors = 0;
-                        } else
-                        {
-                            errors = 1;
-                            encerts = 0;
-                        }
-                        break;
-                    }
-                    i++;
-                }
-                if(encerts > 0)
-                {
-                    Puntuacio = LaPregunta.PuntuacioMaxima;
-                } else if(errors>0)
-                {
-                    Puntuacio = -LaPregunta.PuntuacioMaxima * (decimal)( 1.0 / LaPregunta.Opcions.Count );
-                } else
-                {
-                    Puntuacio = 0;
-                }
-            }
-
-        }
     }
 }
