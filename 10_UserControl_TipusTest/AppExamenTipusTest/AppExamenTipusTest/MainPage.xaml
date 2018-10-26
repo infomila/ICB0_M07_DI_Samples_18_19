@@ -13,6 +13,12 @@
     
 
     <StackPanel>
+ 
+        <view:ExaminadorUI x:Name="exaTotal" OnExamenAcabat="exaTotal_OnExamenAcabat"></view:ExaminadorUI>
+        
+        
+        
+        
         <Button x:Name="btnPuntuacio" Click="btnPuntuacio_Click">Enviar resposta.</Button>
         <TextBlock x:Name="txbPuntuacioExamen"></TextBlock>
         <Border>

@@ -9,8 +9,10 @@
     d:DesignHeight="300"
     d:DesignWidth="400">
 
-    <StackPanel Padding="10" x:Name="stpOpcions">
+    <StackPanel Padding="10" >
         <TextBlock x:Name="tbkPregunta"></TextBlock>
+        <StackPanel Padding="10" x:Name="stpOpcions">
+        </StackPanel>
         <!--RadioButton Padding="20,0,0,0" VerticalContentAlignment="Center" 
                      Margin="20,0,0,0" IsChecked="True"
                      Content="a) Festival de la espuma programàtica"></>

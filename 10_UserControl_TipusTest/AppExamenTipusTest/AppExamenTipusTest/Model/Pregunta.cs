@@ -84,6 +84,11 @@ namespace AppExamenTipusTest.Model
             opcionsMarcades[indexOpcio] = esMarcada;
         }
 
+        public bool EstaLaOpcioMarcada(int indexOpcio)
+        {
+            return opcionsMarcades[indexOpcio];
+        }
+
         public string Enunciat { get => enunciat; set => enunciat = value; }
         public List<string> Opcions { get => opcions; set => opcions = value; }
         

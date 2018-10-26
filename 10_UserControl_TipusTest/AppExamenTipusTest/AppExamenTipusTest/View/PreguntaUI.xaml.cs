@@ -59,7 +59,16 @@ namespace AppExamenTipusTest.View
             int i = 0;
 
             pui.opcionsUI = new List<ToggleButton>();
+            // esborrar tots els continguts de l'stack panel per si anteriorment ja hi havia una pregunta carregada.
 
+            // Desactivar el events checked/unchecked dels checboxes/radiobuttons que vull esborrar
+            foreach (ToggleButton tb in pui.stpOpcions.Children)
+            {
+                tb.Checked -= pui.Tb_Checked;
+                tb.Unchecked -= pui.Tb_Unchecked;
+            }
+            // neteja els checboxes/radiobuttons
+            pui.stpOpcions.Children.Clear();
             foreach (string opcio in pui.LaPregunta.Opcions)
             {
 
@@ -78,6 +87,18 @@ namespace AppExamenTipusTest.View
                 // desem la referència del RadioButton o del Checkbox en una llista
                 pui.opcionsUI.Add(tb);
 
+                // marquem l'opció si esta indicat així a la pregunta.
+                if (tb.GetType() == typeof(CheckBox))
+                {
+                    tb.IsChecked = pui.LaPregunta.EstaLaOpcioMarcada(i);
+                } else
+                {
+                    if (pui.LaPregunta.EstaLaOpcioMarcada(i))
+                    {
+                        tb.IsChecked = pui.LaPregunta.EstaLaOpcioMarcada(i);
+                    }
+                }
+
                 //-------------------------------------
                 // programem l'event per detectar els canvis
                 tb.Checked += pui.Tb_Checked;
@@ -86,7 +107,7 @@ namespace AppExamenTipusTest.View
                 tb.Padding = new Thickness(20, 0, 0, 0);
                 tb.Margin = new Thickness(20, 0, 0, 0);
                 tb.VerticalContentAlignment = VerticalAlignment.Center;
-                tb.IsChecked = false;
+                //tb.IsChecked = false;
                 tb.Content = (char)('a' + i) + ") " + opcio;
                 pui.stpOpcions.Children.Add(tb);
                 i++;

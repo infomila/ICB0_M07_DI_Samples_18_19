@@ -30,6 +30,9 @@ namespace AppExamenTipusTest
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            // carreguem la llista de preguntes al control ExaminadorUI
+            exaTotal.Preguntes = Pregunta.getPreguntes();
+
             // Carreguem la llista de preguntes en el ListView
             lsvPreguntes.ItemsSource = Pregunta.getPreguntes();
         }
@@ -46,6 +49,18 @@ namespace AppExamenTipusTest
                 total += p.GetPuntuacio();
             }
             txbPuntuacioExamen.Text = total + " punts";
+        }
+
+        private async void exaTotal_OnExamenAcabat(object sender, EventArgs e)
+        {
+            ContentDialog examenAcabatDialog = new ContentDialog
+            {
+                Title = "Examen acabat",
+                Content = exaTotal.Puntuacio + ((exaTotal.Puntuacio>=5)? ", Good Job" :"Game over. Try Again"),
+                CloseButtonText = "Ok"
+            };
+
+            ContentDialogResult result = await examenAcabatDialog.ShowAsync();
         }
     }
 }
