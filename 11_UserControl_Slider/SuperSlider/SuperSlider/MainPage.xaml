@@ -10,6 +10,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <view:SuperSliderUI></view:SuperSliderUI>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" ></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!--view:SuperSliderUI  x:Name="slider" Grid.Row="0"  MaxValue="500" Valor="250"   HorizontalAlignment="Stretch" Grid.Column="0"></-->
+        <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch">asjdhskdjfhkjd</Button>
+        <!--TextBox  Grid.Row="1" Text="{Binding Valor, ElementName=slider}"></-->
+        <view:RuletaUI Grid.Row="1" Valor="25" ></view:RuletaUI>
     </Grid>
 </Page>

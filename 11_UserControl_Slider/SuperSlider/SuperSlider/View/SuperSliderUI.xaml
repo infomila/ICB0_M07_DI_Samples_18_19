@@ -6,11 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    Background="Red"
+    MinWidth="50"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"  SizeChanged="UserControl_SizeChanged" PointerExited="Rectangle_PointerReleased">
 
-    <Canvas>
-        <Rectangle Width="200" Height="40" Canvas.Left="10" Canvas.Top="40" Fill="Red"   ></Rectangle>
-        <Rectangle x:Name="recValor" Width="180" Height="30" Canvas.Left="20" Canvas.Top="45" Fill="Lime" PointerPressed="Rectangle_PointerPressed"  ></Rectangle>
+
+    <Canvas HorizontalAlignment="Stretch" Margin="0,0,0,0"  Background="Aquamarine">
+
+        <Rectangle x:Name="recBack" Width="200" Height="40" Canvas.Left="0" Canvas.Top="0" Fill="#FF272222" PointerReleased="Rectangle_PointerReleased" PointerMoved="Rectangle_PointerMoved" PointerPressed="Rectangle_PointerPressed"  ></Rectangle>
+        <Rectangle x:Name="recValor" Width="190" Height="30" Canvas.Left="5" Canvas.Top="5"  PointerReleased="Rectangle_PointerReleased" PointerMoved="Rectangle_PointerMoved" PointerPressed="Rectangle_PointerPressed"    >
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF970101"/>
+                    <GradientStop Color="#FFD46262" Offset="1"/>
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle x:Name="recHandler" Width="20" Height="35" Fill="#FF550C0C"  PointerReleased="Rectangle_PointerReleased" PointerMoved="Rectangle_PointerMoved" PointerPressed="Rectangle_PointerPressed"  Canvas.Left="3" Canvas.Top="3" RadiusX="5" RadiusY="5" Stroke="#FFEEA4A4"/>
     </Canvas>
 </UserControl>

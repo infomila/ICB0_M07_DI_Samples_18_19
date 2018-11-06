@@ -1,0 +1,38 @@
+﻿<UserControl
+    x:Class="SuperSlider.View.RuletaUI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SuperSlider.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400">
+
+    <Canvas x:Name="cnv">
+
+        <Canvas x:Name="cnvDial" Width="200" Height="200" Canvas.Left="20" Canvas.Top="20">
+            <Canvas.RenderTransform>
+                <RotateTransform Angle="0" CenterX="100" CenterY="100"></RotateTransform>
+            </Canvas.RenderTransform>   
+            
+            
+            <Ellipse Width="200" Height="200" Canvas.Left="0" Canvas.Top="0" Stroke="#FF0A0707" >
+                <Ellipse.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF3A4451"/>
+                        <GradientStop Color="White" Offset="0.851"/>
+                    </LinearGradientBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Width="20" Height="20" Canvas.Left="90" Canvas.Top="10" Fill="#ffffff"></Ellipse>
+        </Canvas>
+        <!--Rectangle Width="6" Height="20" Fill="#aaaaaa" Canvas.Top="0" Canvas.Left="117">
+            <Rectangle.RenderTransform>
+                <RotateTransform Angle="45" CenterX="3" CenterY="120">            
+                </RotateTransform>
+            </Rectangle.RenderTransform>
+        </-->
+
+    </Canvas>
+</UserControl>
