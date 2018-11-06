@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
 
@@ -21,6 +22,9 @@ namespace SuperSlider.View
 {
     public sealed partial class RuletaUI : UserControl
     {
+        const int numParticions = 12;
+        const double angleMaxim = 360 - (360.0 / numParticions);
+
         public RuletaUI()
         {
             this.InitializeComponent();
@@ -33,7 +37,7 @@ namespace SuperSlider.View
                                       </ Rectangle.RenderTransform >
                                   </ Rectangle >
             */
-            int numParticions = 12;
+
             for (int i = 0; i < numParticions; i++)
             {
                 Rectangle r = new Rectangle();
@@ -75,10 +79,48 @@ namespace SuperSlider.View
             r.ValorChangedCallback();
         }
 
+        double valorAnterior = 0;
+
         private void ValorChangedCallback()
         {
             RotateTransform rt = (RotateTransform)cnvDial.RenderTransform;
-            rt.Angle = this.Valor * 360.0 / 100;
+            //rt.Angle = this.Valor * 360.0 / 100;
+
+            //-----------------------------------------------------
+            double angleAnterior = this.valorAnterior * angleMaxim / 100;
+            double angleDeDesti = this.Valor * angleMaxim / 100;
+
+
+            double diferenciaAngular = Math.Abs(angleAnterior - angleDeDesti);
+            double velocitatAngular = 360.0 / 500.0; // graus per milisegon
+
+            var storyboard = new Storyboard();
+            var doubleAnimation = new DoubleAnimation();
+            doubleAnimation.Duration = TimeSpan.FromMilliseconds(diferenciaAngular / velocitatAngular);
+            doubleAnimation.EnableDependentAnimation = true;
+            doubleAnimation.To = angleDeDesti;
+            Storyboard.SetTargetProperty(doubleAnimation, "Angle");
+            Storyboard.SetTarget(doubleAnimation, rt);
+            storyboard.Children.Add(doubleAnimation);
+            storyboard.Begin();
+
+
+            valorAnterior = this.Valor;
+        }
+
+        private void Ellipse_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            Point p = e.GetCurrentPoint(cnv).Position;
+            double x = p.X - (elpDial.Width / 2) -20;
+            double y = p.Y - (elpDial.Height/ 2) -20;
+            double angle = Math.Atan2(-y, x);
+            
+            angle = Math.PI / 2 - angle;
+            if (angle < 0) angle = 2 * Math.PI + angle;
+            double v = (angle / (angleMaxim * Math.PI /180.0)) * 100;
+
+            if (v > 100) v = 100;
+            this.Valor = v;
         }
     }
 }

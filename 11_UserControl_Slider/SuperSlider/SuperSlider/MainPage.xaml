@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <!--view:SuperSliderUI  x:Name="slider" Grid.Row="0"  MaxValue="500" Valor="250"   HorizontalAlignment="Stretch" Grid.Column="0"></-->
         <Button Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch">asjdhskdjfhkjd</Button>
-        <!--TextBox  Grid.Row="1" Text="{Binding Valor, ElementName=slider}"></-->
-        <view:RuletaUI Grid.Row="1" Valor="25" ></view:RuletaUI>
+        <TextBox  Grid.Row="1" Text="{Binding Valor, ElementName=ruleta}"></TextBox>
+        <view:RuletaUI x:Name="ruleta" Grid.Row="1" Valor="25" ></view:RuletaUI>
     </Grid>
 </Page>
