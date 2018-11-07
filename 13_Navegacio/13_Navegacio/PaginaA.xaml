@@ -1,0 +1,19 @@
+﻿<local:PaginaBase
+    x:Class="_13_Navegacio.PaginaA"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_13_Navegacio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Loaded="Page_Loaded">
+
+    <StackPanel>
+        <TextBox Text="Home page"  FontSize="60"></TextBox>
+
+        <Button Style="{StaticResource NavigationBackButtonNormalStyle}" FontSize="40" Click="Button_Click_1" x:Name="btnBack"/>
+        <Button Content="Go to B" FontSize="60" Click="Button_Click"></Button>
+        <TextBox Text="A" x:Name="txbA" FontSize="60"></TextBox>
+    </StackPanel>
+</local:PaginaBase>
