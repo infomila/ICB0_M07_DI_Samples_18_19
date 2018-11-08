@@ -37,14 +37,6 @@ namespace _13_Navegacio
 
 
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (base.Frame.CanGoBack)
-            {
-                base.Frame.GoBack();
-            }
-        }
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             btnBack.IsEnabled = base.Frame.CanGoBack;

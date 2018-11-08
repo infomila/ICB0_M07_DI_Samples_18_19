@@ -35,18 +35,15 @@ namespace _13_Navegacio
             base.Frame.Navigate(typeof(PaginaB), parametre, new SlideNavigationTransitionInfo() { });
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            if (base.Frame.CanGoBack)
-            {
-                base.Frame.GoBack();
-            }
-        }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             btnBack.IsEnabled = base.Frame.CanGoBack;
         }
 
-     }
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

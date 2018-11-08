@@ -12,7 +12,7 @@
     <StackPanel>
         <TextBox Text="Clients"  FontSize="60"></TextBox>
 
-        <Button Style="{StaticResource NavigationBackButtonNormalStyle}" FontSize="40" Click="Button_Click_1" x:Name="btnBack"/>
+        <Button Style="{StaticResource NavigationBackButtonNormalStyle}" FontSize="40" Click="Button_Back" x:Name="btnBack"/>
         <Button Content="Go to A" FontSize="60" Click="Button_Click"></Button>
 
         <TextBox Text="B"  x:Name="txbB" FontSize="60"></TextBox>

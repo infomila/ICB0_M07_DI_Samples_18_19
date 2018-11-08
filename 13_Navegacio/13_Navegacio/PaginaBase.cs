@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
 namespace _13_Navegacio
 {
-    class PaginaBase :  Page
+    public class PaginaBase :  Page
     {
         private MainPage mainPage;
 
@@ -25,5 +26,16 @@ namespace _13_Navegacio
             if (mainPage != null) mainPage.notificaNavegacio(this.GetType());
 
         }
+
+        protected void Button_Back(object sender, RoutedEventArgs e)
+        {
+            if (base.Frame.CanGoBack)
+            {
+                base.Frame.GoBack();
+            }
+        }
+
+
+
     }
 }
