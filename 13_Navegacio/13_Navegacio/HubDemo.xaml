@@ -1,0 +1,166 @@
+﻿<Page
+    x:Class="_13_Navegacio.HubDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_13_Navegacio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <DataTemplate x:Key="FeaturedSectionTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Hub Header="TITOL PRINCIPAl" >
+            <HubSection Width="780" Margin="0,0,80,0">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Square150x150Logo.scale-200.png" Stretch="Fill"  x:Name="imgImatge"/>
+                </HubSection.Background>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png">
+                            <Image.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Copy" Click="MenuFlyoutItem_Click"></MenuFlyoutItem>
+                                    <MenuFlyoutItem Text="Open in Web Browser"></MenuFlyoutItem>
+                                </MenuFlyout>
+                            </Image.ContextFlyout>
+                        </Image>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+            <HubSection Width="500" Header="Featured">
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Image Stretch="Fill" Width="420" Height="280" Source="Assets/Square150x150Logo.scale-200.png"/>
+                        <TextBlock Style="{StaticResource SubheaderTextBlockStyle}" 
+                           Grid.Row="1" Margin="0,10,0,0" TextWrapping="Wrap" 
+                           Text="Lorem ipsum dolor sit nonumy sed consectetuer ising elit, sed diam"/>
+                        <TextBlock Style="{StaticResource TitleTextBlockStyle}" Grid.Row="2" Margin="0,10,0,0"
+                           Text="Description text:"/>
+                        <TextBlock Style="{StaticResource BodyTextBlockStyle}" Grid.Row="3" 
+                           Text="Lorem ipsum dolor sit amet, consectetuer ising elit... "/>
+                    </Grid>
+                </DataTemplate>
+            </HubSection>
+        </Hub>
+    </Grid>
+</Page>

@@ -34,7 +34,13 @@ namespace _13_Navegacio
             if( args.InvokedItem.Equals("Home") )
             {
                 frmPrincipal.Navigate(typeof(PaginaA), this);
-            } else
+            }
+            if (args.InvokedItem.Equals("Proveidors"))
+            {
+
+                frmPrincipal.Navigate(typeof(HubDemo), this);
+            }
+            else
             {
                 frmPrincipal.Navigate(typeof(PaginaB), this);
             }

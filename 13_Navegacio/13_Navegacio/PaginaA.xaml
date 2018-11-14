@@ -9,8 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded">
 
-    <StackPanel>
-        <CommandBar>
+    <RelativePanel>
+   
+        <StackPanel>
+
+            <TextBox Text="Home page"  FontSize="60"></TextBox>
+
+            <Button Style="{StaticResource NavigationBackButtonNormalStyle}" FontSize="40" Click="Button_Back" x:Name="btnBack"/>
+            
+            <TextBox Text="A" x:Name="txbA" FontSize="60"></TextBox>
+        </StackPanel>
+
+
+        <Button Content="Go to B" FontSize="60" Click="Button_Click" RelativePanel.AlignRightWithPanel="true" RelativePanel.Above="cmbBarra" Margin="0,0,30,30" ></Button>
+
+        <CommandBar x:Name="cmbBarra" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="true" RelativePanel.AlignRightWithPanel="true">
             <AppBarSeparator></AppBarSeparator>
             <AppBarButton Icon="Save" Label="Save"></AppBarButton>
             <AppBarButton Icon="Delete" Label="Delete"></AppBarButton>
@@ -20,10 +33,6 @@
                 <AppBarButton Icon="Back"   Click="Button_Back"></AppBarButton>
             </CommandBar.Content>
         </CommandBar>
-        <TextBox Text="Home page"  FontSize="60"></TextBox>
 
-        <Button Style="{StaticResource NavigationBackButtonNormalStyle}" FontSize="40" Click="Button_Back" x:Name="btnBack"/>
-        <Button Content="Go to B" FontSize="60" Click="Button_Click"></Button>
-        <TextBox Text="A" x:Name="txbA" FontSize="60"></TextBox>
-    </StackPanel>
+    </RelativePanel>
 </local:PaginaBase>
