@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="App1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" FontSize="30">Dependències: MySql.Data.EntityFrameworkCore versió 6.10.8 </TextBlock>
+        <TextBlock Grid.Row="1" FontSize="30">Versió mínima Platform (del projecte): 10.0.16299.0</TextBlock>
+        <TextBox Grid.Row="2" x:Name="txbQuery"></TextBox>
+        <TextBox Grid.Row="3" x:Name="txbResultat" AcceptsReturn="True"></TextBox>
+        <Button Grid.Row="4" Click="Button_Click">GO</Button>
+    </Grid>
+</Page>
