@@ -271,7 +271,7 @@ VALUES (621, 	'1987-03-10' , 'A', 100,
         	'1987-01-10' , 730);
 
 
- INSERT INTO IDS values ('comanda', select max(com_num) from comanda ); 
+ INSERT INTO IDS values ('comanda', (select max(com_num) from comanda) ); 
 
 
 

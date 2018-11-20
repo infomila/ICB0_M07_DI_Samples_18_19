@@ -8,6 +8,78 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded" >
+    <Page.Resources>
+        <Style x:Key="ListViewItemRevealStyle" TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="{ThemeResource ListViewItemBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource ListViewItemForeground}"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Padding" Value="0,0,0,0"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="MinWidth" Value="{ThemeResource ListViewItemMinWidth}"/>
+            <Setter Property="MinHeight" Value="{ThemeResource ListViewItemMinHeight}"/>
+            <Setter Property="AllowDrop" Value="False"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListViewItem">
+                        <ListViewItemPresenter x:Name="Root" CheckBrush="{ThemeResource ListViewItemCheckBrush}" ContentMargin="{TemplateBinding Padding}" CheckBoxBrush="{ThemeResource ListViewItemCheckBoxBrush}" ContentTransitions="{TemplateBinding ContentTransitions}" CheckMode="{ThemeResource ListViewItemCheckMode}" DragOpacity="{ThemeResource ListViewItemDragThemeOpacity}" DisabledOpacity="{ThemeResource ListViewItemDisabledThemeOpacity}" DragBackground="{ThemeResource ListViewItemDragBackground}" DragForeground="{ThemeResource ListViewItemDragForeground}" FocusBorderBrush="{ThemeResource ListViewItemFocusBorderBrush}" FocusVisualMargin="{TemplateBinding FocusVisualMargin}" FocusSecondaryBorderBrush="{ThemeResource ListViewItemFocusSecondaryBorderBrush}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Control.IsTemplateFocusTarget="True" PressedBackground="{ThemeResource ListViewItemBackgroundPressed}" PlaceholderBackground="{ThemeResource ListViewItemPlaceholderBackground}" PointerOverForeground="{ThemeResource ListViewItemForegroundPointerOver}" PointerOverBackground="{ThemeResource ListViewItemBackgroundPointerOver}" RevealBorderThickness="{ThemeResource ListViewItemRevealBorderThemeThickness}" ReorderHintOffset="{ThemeResource ListViewItemReorderHintThemeOffset}" RevealBorderBrush="{ThemeResource ListViewItemRevealBorderBrush}" RevealBackground="{ThemeResource ListViewItemRevealBackground}" SelectedForeground="{ThemeResource ListViewItemForegroundSelected}" SelectionCheckMarkVisualEnabled="{ThemeResource ListViewItemSelectionCheckMarkVisualEnabled}" SelectedBackground="{ThemeResource ListViewItemBackgroundSelected}" SelectedPressedBackground="{ThemeResource ListViewItemBackgroundSelectedPressed}" SelectedPointerOverBackground="{ThemeResource ListViewItemBackgroundSelectedPointerOver}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="Selected"/>
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.(RevealBrush.State)" Value="PointerOver"/>
+                                            <Setter Target="Root.RevealBorderBrush" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOverSelected">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.(RevealBrush.State)" Value="PointerOver"/>
+                                            <Setter Target="Root.RevealBorderBrush" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOverPressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.(RevealBrush.State)" Value="Pressed"/>
+                                            <Setter Target="Root.RevealBorderBrush" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.(RevealBrush.State)" Value="Pressed"/>
+                                            <Setter Target="Root.RevealBorderBrush" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="PressedSelected">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.(RevealBrush.State)" Value="Pressed"/>
+                                            <Setter Target="Root.RevealBorderBrush" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="DisabledStates">
+                                    <VisualState x:Name="Enabled"/>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Target="Root.RevealBorderThickness" Value="0"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </ListViewItemPresenter>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ListViewItemContainerStyle1" BasedOn="{StaticResource ListViewItemRevealStyle}" TargetType="ListViewItem"/>
+    </Page.Resources>
 
     <Grid Padding="20">
         <Grid.ColumnDefinitions>
@@ -15,7 +87,7 @@
             <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
+        <Grid Grid.Column="0" Padding="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -30,46 +102,42 @@
             <TextBox x:Name="txbIdFilter" Grid.Column="1" Grid.Row="0" Text="10"></TextBox>
             <TextBlock Margin="10" Grid.Column="0" Grid.Row="1" Text="Nom:"></TextBlock>
             <TextBox x:Name="txbNomFilter" Grid.Column="1" Grid.Row="1" Text="10"></TextBox>
-            <Button Margin="10" Grid.Column="0" Grid.Row="2"  Content="&#xE71C;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" ></Button>
-            <Button Margin="10" Grid.Column="0" Grid.Row="3"  Content="&#xE71C;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets"  ></Button>
-            <TextBlock  Grid.Column="0" Grid.Row="3" Text="&#xE711;" HorizontalAlignment="Stretch" FontWeight="ExtraBlack" Foreground="Red" Margin="0,-6,0,0" FontSize="18" TextAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" ></TextBlock>
+            <Button x:Name="btnFiltrar" Click="btnFiltrar_Click" Margin="10" Grid.Column="0" Grid.Row="2"  Content="&#xE71C;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" ></Button>
+            <Button x:Name="btnNetejaFiltre" Click="btnNetejaFiltre_Click" Margin="10" Grid.Column="0" Grid.Row="3"  Content="&#xE71C;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets"  ></Button>
+            <TextBlock Tapped="btnNetejaFiltre_Click"  Grid.Column="0" Grid.Row="3" Text="&#xE711;" HorizontalAlignment="Stretch" FontWeight="ExtraBlack" Foreground="Red" Margin="0,-6,0,0" FontSize="18" TextAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" ></TextBlock>
             
 
         </Grid>
         <!--  *****************************************************  -->
-        <Grid Grid.Column="1">
-            <ListView x:Name="lsvDepartaments">
+        <Grid Grid.Column="1" Padding="10">
+            <ListView ItemContainerStyle="{StaticResource ListViewItemContainerStyle1}" x:Name="lsvDepartaments"
+                      SelectionChanged="lsvDepartaments_SelectionChanged">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid HorizontalAlignment="Stretch" Margin="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
-                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0" BorderThickness="1" BorderBrush="Black">
-                                <TextBlock Text="{Binding DeptNo}"></TextBlock>
+                                <TextBlock Text="{Binding DeptNo}"  VerticalAlignment="Center" HorizontalAlignment="Center">></TextBlock>
                             </Border>
                             <Border Grid.Column="1" BorderThickness="1" BorderBrush="Black">
-                                <TextBlock Text="{Binding Nom}"></TextBlock>
+                                <TextBlock Text="{Binding Nom}"  VerticalAlignment="Center" HorizontalAlignment="Center">></TextBlock>
                             </Border>
                             <Border Grid.Column="2" BorderThickness="1" BorderBrush="Black">
-                                <TextBlock Text="{Binding Loc}"></TextBlock>
+                                <TextBlock Text="{Binding Loc}"  VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                         </Grid>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-                <ListView.Items>
-                    <ListViewItem>KAKA</ListViewItem>
-                    <ListViewItem>KOKO</ListViewItem>
-                    <ListViewItem>SOKO</ListViewItem>
-                </ListView.Items>                
+                </ListView.ItemTemplate>                     
             </ListView>
         </Grid>
         <!--  *****************************************************  -->
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Padding="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
@@ -90,7 +158,7 @@
             <TextBlock Margin="10" Grid.Column="0" Grid.Row="3" Text="Num.Empleats:"></TextBlock>
             <TextBox x:Name="txbNumEmp" Grid.Column="1" Grid.Row="3" IsEnabled="False" Text="10"></TextBox>
             <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button  x:Name="btnSave" Margin="10" Content="&#xE74E;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" ></Button>
+                <Button  x:Name="btnSave" Click="btnSave_Click" Margin="10" Content="&#xE74E;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" ></Button>
                 <Button  x:Name="btnDelete" Margin="10" Grid.Column="2" Grid.Row="4"  Content="&#xE74D;" HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" ></Button>
             </StackPanel>
 
