@@ -119,7 +119,7 @@ namespace _15_SQLite.Db
         }
 
 
-        public static void InsertDept( string pNom, string pLoc )
+        public static Dept InsertDept( string pNom, string pLoc )
         {
             using (SQLiteDBContext context = new SQLiteDBContext())
             {
@@ -132,32 +132,69 @@ namespace _15_SQLite.Db
                     using (var consulta = connexio.CreateCommand())
                     {
 
-                        consulta.CommandText = "update table ids set last_id=last_id+1 where table_name='dept'";
+                        consulta.CommandText = "update ids set last_id=last_id+1 where table_name='dept'";
                         // això assegurea que la consulta es faci dins de la transacció engegada anteriorment.
                         consulta.Transaction = transaccio;
                         int mod = consulta.ExecuteNonQuery();
                         if (mod != 1) throw new Exception("");
                         //--------------------------------------------------------------------------------------
-                        consulta.CommandText = "selec last_id from ids where table_name='dept'";
-                        int last_id = (int)consulta.ExecuteScalar();
+                        consulta.CommandText = "select last_id from ids where table_name='dept'";
+                        Int32 last_id = Convert.ToInt32(consulta.ExecuteScalar());
                         //--------------------------------------------------------------------------------------
 
                         DBUtils.CrearParametre("idparam",  last_id, consulta);
                         DBUtils.CrearParametre("nomparam", pNom,    consulta);
                         DBUtils.CrearParametre("locparam", pLoc,    consulta);
 
-                        consulta.CommandText = "insert into ids (dept_no, dnom, loc) values ( @idparam, @nomparam, @locparam )";
+                        consulta.CommandText = "insert into dept (dept_no, dnom, loc) values ( @idparam, @nomparam, @locparam )";
                         int filesInserides = consulta.ExecuteNonQuery();
                         if (filesInserides != 1) throw new Exception("");
 
                         // desem els canvis de tota la transacció
                         transaccio.Commit();
+                        // Creem un object de departament nou.
+                        return new Dept(last_id, pNom, pLoc);
                     }
                 }
             }
 
         }
 
+        internal static void esborrarDepartament(int id)
+        {
+            using (SQLiteDBContext context = new SQLiteDBContext())
+            {
+                using (var connexio = context.Database.GetDbConnection()) // <== NOTA IMPORTANT: requereix ==>using Microsoft.EntityFrameworkCore;
+                {
+                    // Obrir la connexió a la BD
+                    connexio.Open();
+
+                    // Crear una consulta SQL
+                    using (var consulta = connexio.CreateCommand())
+                    {
+
+                        DbTransaction transaccio = connexio.BeginTransaction();
+
+                        DBUtils.CrearParametre("IdParam", id, consulta);
+                  
+                        // query SQL
+                        consulta.CommandText = @"delete from dept where dept_no = @IdParam ";
+                        consulta.Transaction = transaccio;
+
+                        int actualitzades = consulta.ExecuteNonQuery();
+                        if (actualitzades != 1)
+                        {
+                            transaccio.Rollback(); // Keep yourself safe and warm.
+                            throw new Exception("PUFFFFF");
+                        }
+                        else
+                        {
+                            transaccio.Commit(); // ou yeah!
+                        }
+                    }
+                }
+            }
+        }
 
         public static void InsertRandomDept()
         {

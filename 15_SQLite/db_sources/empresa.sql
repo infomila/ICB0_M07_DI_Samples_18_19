@@ -1,4 +1,4 @@
-
+DROP TABLE IDS;
 DROP TABLE DETALL;
 DROP TABLE COMANDA;
 DROP TABLE PRODUCTE;
@@ -26,7 +26,7 @@ INSERT INTO DEPT VALUES (20, 'INVESTIGACIÓ', 'MADRID');
 INSERT INTO DEPT VALUES (30, 'VENDES', 'BARCELONA');
 INSERT INTO DEPT VALUES (40, 'PRODUCCIÓ', 'BILBAO');
 
- INSERT INTO IDS values ('dept', select max(dept_no) from dept ); 
+ INSERT INTO IDS values ('dept', (select max(dept_no) from dept) ); 
 
 CREATE TABLE EMP (
  EMP_NO    NUMERIC(4) CONSTRAINT EMP_PK PRIMARY KEY
@@ -79,7 +79,7 @@ INSERT INTO EMP VALUES (7934,'MUÑOZ','EMPLEAT',7782, 	'1982-01-10' ,
                         169000,NULL,10);
 
 
- INSERT INTO IDS values ('emp', select max(emp_no) from emp ); 
+ INSERT INTO IDS values ('emp', (select max(emp_no) from emp) ); 
 
 
 
@@ -153,7 +153,7 @@ VALUES (109, 'SPRINGFIELD NUCLEAR POWER PLANT', '13 PERCEBE STR.', 'SPRINGFIELD'
         '999-6666', NULL, 10000, '');
 
 
- INSERT INTO IDS values ('client', select max(client_cod) from client ); 
+ INSERT INTO IDS values ('client', (select max(client_cod) from client) ); 
 
 
 
@@ -187,7 +187,7 @@ VALUES (200380, 'SB VITA SNACK-6 PACK');
 
 
 
- INSERT INTO IDS values ('producte', select max(prod_num) from producte ); 
+ INSERT INTO IDS values ('producte', (select max(prod_num) from producte) ); 
 
 
 CREATE TABLE COMANDA  (
@@ -271,7 +271,7 @@ VALUES (621, 	'1987-03-10' , 'A', 100,
         	'1987-01-10' , 730);
 
 
- INSERT INTO IDS values ('comanda', select max(com_num) from comanda ); 
+ INSERT INTO IDS values ('comanda', (select max(com_num) from comanda) ); 
 
 
 
