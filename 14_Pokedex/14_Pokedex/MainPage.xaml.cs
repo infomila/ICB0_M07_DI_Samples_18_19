@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -25,6 +26,14 @@ namespace _14_Pokedex
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            ObservableCollection<Pokemon> pokemons = Pokemon.GetLlistaPokemons();
+            imgPokemon.Source = pokemons[0].Foto;
+
         }
     }
 }
