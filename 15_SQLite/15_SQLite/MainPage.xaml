@@ -162,9 +162,9 @@
                 <TextBlock Margin="10" Grid.Column="0" Grid.Row="0" Text="Id:"></TextBlock>
                 <TextBox x:Name="txbId" IsEnabled="False" Grid.Column="1" Grid.Row="0" Text="10"></TextBox>
                 <TextBlock Margin="10" Grid.Column="0" Grid.Row="1" Text="Nom:"></TextBlock>
-                <TextBox x:Name="txbNom" Grid.Column="1" Grid.Row="1" Text="10"></TextBox>
+                <TextBox x:Name="txbNom" TextChanged="txb_TextChanged" Grid.Column="1" Grid.Row="1" Text="10"></TextBox>
             <TextBlock Margin="10" Grid.Column="0" Grid.Row="2" Text="Localitat:"></TextBlock>
-            <TextBox x:Name="txbLoc" Grid.Column="1" Grid.Row="2" Text="10"></TextBox>
+            <TextBox x:Name="txbLoc"  TextChanged="txb_TextChanged" Grid.Column="1" Grid.Row="2" Text="10"></TextBox>
             <TextBlock Margin="10" Grid.Column="0" Grid.Row="3" Text="Num.Empleats:"></TextBlock>
             <TextBox x:Name="txbNumEmp" Grid.Column="1" Grid.Row="3" IsEnabled="False" Text="10"></TextBox>
             <StackPanel Grid.Column="2" Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center">

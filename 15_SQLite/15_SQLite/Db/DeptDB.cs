@@ -65,6 +65,80 @@ namespace _15_SQLite.Db
 
         }
 
+        internal static int GetDeptsAmbNom(int deptNo, string nom)
+        {
+            using (SQLiteDBContext context = new SQLiteDBContext())
+            {
+                using (var connexio = context.Database.GetDbConnection()) // <== NOTA IMPORTANT: requereix ==>using Microsoft.EntityFrameworkCore;
+                {
+                    // Obrir la connexió a la BD
+                    connexio.Open();
+
+                    // Crear una consulta SQL
+                    using (var consulta = connexio.CreateCommand())
+                    {
+                        DBUtils.CrearParametre("p_dept_no", deptNo, consulta);
+                        DBUtils.CrearParametre("p_nom", nom, consulta);
+                        // query SQL
+                        consulta.CommandText = @"select count(*)  from dept 
+                                                where 
+                                                    dept_no<>@p_dept_no and
+                                                    upper(dnom) = upper(@p_nom) ";
+                        return Convert.ToInt32(consulta.ExecuteScalar());
+                    }
+                }
+            }
+        }
+
+        /*
+        internal delegate int ScalarFunction(params object[] parameters);
+
+        internal static int magicfunction(ScalarFunction funcio)
+        {
+            using (SQLiteDBContext context = new SQLiteDBContext())
+            {
+                using (var connexio = context.Database.GetDbConnection()) // <== NOTA IMPORTANT: requereix ==>using Microsoft.EntityFrameworkCore;
+                {
+                    // Obrir la connexió a la BD
+                    connexio.Open();
+
+                    // Crear una consulta SQL
+                    using (var consulta = connexio.CreateCommand())
+                    {
+                        return funcio.Invoke(consulta);
+                    }
+                }
+            }
+        }*/
+
+
+
+     
+
+        internal static int GetNumeroEmpleats(int deptNo)
+        {
+
+            using (SQLiteDBContext context = new SQLiteDBContext())
+            {
+                using (var connexio = context.Database.GetDbConnection()) // <== NOTA IMPORTANT: requereix ==>using Microsoft.EntityFrameworkCore;
+                {
+                    // Obrir la connexió a la BD
+                    connexio.Open();
+
+                    // Crear una consulta SQL
+                    using (var consulta = connexio.CreateCommand())
+                    {
+                        DBUtils.CrearParametre("p_dept_no", deptNo, consulta);
+                        // query SQL
+                        consulta.CommandText = @"select count(*)  from emp where dept_no=@p_dept_no ";
+                        return Convert.ToInt32(consulta.ExecuteScalar());
+                    }
+                }
+            }
+
+
+        }
+
         internal static void ActualitzaDepartament(int id, string txbNom, string txbLoc)
         {
             using (SQLiteDBContext context = new SQLiteDBContext())

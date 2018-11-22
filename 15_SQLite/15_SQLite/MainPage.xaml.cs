@@ -3,11 +3,13 @@ using _15_SQLite.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -110,6 +112,8 @@ namespace _15_SQLite
                 txbId.Text = "" + d.DeptNo;
                 txbNom.Text = d.Nom;
                 txbLoc.Text = d.Loc;
+                txbNumEmp.Text = ""+d.NumeroEmpleats;
+                btnDelete.IsEnabled = (d.NumeroEmpleats == 0); // el botó esborrar només està actiu si no hi ha empleats
             } else
             {
                 ModeActual = Mode.NONE;
@@ -171,6 +175,35 @@ namespace _15_SQLite
             {
                 lsvDepartaments.SelectedIndex = 0;
             }
+        }
+
+        private void txb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (lsvDepartaments.SelectedItem != null) {
+
+                bool isOk = true;
+
+                // a) Validem el nom
+                Dept d = (Dept)lsvDepartaments.SelectedItem;
+                bool nomValid = Dept.ValidaNom(d.DeptNo, txbNom.Text);
+                mostraErrors(txbNom, nomValid);
+                if (!nomValid) isOk = false;
+
+                // b) Validem la localitat
+                bool locValida = Dept.ValidaLoc(txbLoc.Text);
+                mostraErrors(txbLoc, locValida);
+                if (!locValida) isOk = false;
+
+                // c) Actualitzem l'estat del botó de desar
+                btnSave.IsEnabled = isOk;
+            }
+        }
+
+        private void mostraErrors(TextBox txb, bool nomValid)
+        {
+            SolidColorBrush colorBrushRed = new SolidColorBrush(Color.FromArgb(255, 200,0,0));
+            SolidColorBrush colorBrushWhite = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            txb.Background = nomValid ? colorBrushWhite : colorBrushRed;
         }
     }
 }
