@@ -5,6 +5,7 @@
     xmlns:local="using:_15_SQLite"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     Loaded="Page_Loaded" >
@@ -112,15 +113,82 @@
         <Grid Grid.Column="1" Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition  Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" 
+
+            <controls:DataGrid x:Name="dgrEmps" Grid.Row="0" AutoGenerateColumns="False">
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn 
+                        IsReadOnly="True"
+                        Header="Número" 
+                        Width="SizeToHeader"
+                        Binding="{Binding DeptNo}" 
+                        FontSize="20" />
+                    <controls:DataGridTextColumn 
+                        Header="Nom del departament" 
+                        Width="SizeToCells"
+                        Binding="{Binding Nom}" 
+                        FontSize="20" />
+                    <controls:DataGridTextColumn 
+                        Header="Localitat" 
+                        Width="SizeToCells"
+                        Binding="{Binding Loc}" 
+                        FontSize="20" />
+                    <controls:DataGridCheckBoxColumn
+                        Header="Esborrable"
+                        CanUserResize="True"
+                        IsReadOnly="True"
+                        Binding="{Binding EsEsborrable}"/>
+                    <!--controls:DataGridComboBoxColumn
+                        Header="Cap"
+                        ItemsSource="{x:Bind Empleats, Mode=OneWay}"
+                        DisplayMemberPath ="Nom"
+                        Binding="{Binding DeptNo}"
+                        /-->
+                    <controls:DataGridTemplateColumn Header="Name">
+                        <!--controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBlock Padding="5,0,5,0"
+                            Text="{Binding Cap.Nom}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate-->
+                        <controls:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                
+                                    <ComboBox ItemsSource="{Binding Empleats}" HorizontalAlignment="Stretch" 
+                                              DisplayMemberPath="Nom"
+                                              SelectedItem="{Binding Cap, Mode=TwoWay}">
+                                    </ComboBox>
+                                
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellTemplate>
+                        <!-- Visualització en mode edició -->
+                        <controls:DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                
+                                    <ComboBox ItemsSource="{Binding Empleats}" 
+                                              DisplayMemberPath="Nom"
+                                              SelectedItem="{Binding Cap, Mode=TwoWay}">
+                                    </ComboBox>
+                                
+                            </DataTemplate>
+                        </controls:DataGridTemplateColumn.CellEditingTemplate>
+                    </controls:DataGridTemplateColumn>
+                </controls:DataGrid.Columns>
+            </controls:DataGrid>
+
+
+
+            <Button Grid.Row="1" 
                      Content="&#xE710;" 
                     x:Name="btnNew"
                     Click="btnNew_Click"
                     HorizontalAlignment="Stretch" FontFamily="Segoe MDL2 Assets"                     
                     ></Button>
-            <ListView Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemContainerStyle1}" x:Name="lsvDepartaments"
+            <ListView Grid.Row="2" ItemContainerStyle="{StaticResource ListViewItemContainerStyle1}" x:Name="lsvDepartaments"
                       SelectionChanged="lsvDepartaments_SelectionChanged">
 
                 <ListView.ItemTemplate>

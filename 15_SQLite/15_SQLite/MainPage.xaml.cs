@@ -38,6 +38,7 @@ namespace _15_SQLite
     {
         private Mode mModeActual ;
 
+
         public Mode ModeActual {
             get { return mModeActual; }
             set {
@@ -77,7 +78,8 @@ namespace _15_SQLite
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-             lsvDepartaments.ItemsSource = DeptDB.GetDepts();
+            lsvDepartaments.ItemsSource = DeptDB.GetDepts();
+            dgrEmps.ItemsSource = (IEnumerable<Dept>)lsvDepartaments.ItemsSource;
         }
 
 

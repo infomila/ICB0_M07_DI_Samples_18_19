@@ -1,6 +1,7 @@
 ﻿using _15_SQLite.Db;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace _15_SQLite.Model
         private int deptNo;
         private string dnom;
         private string loc;
+        private Emp cap;
 
         public Dept(int deptNo, string dnom, string loc)
         {
@@ -70,6 +72,13 @@ namespace _15_SQLite.Model
                 // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Loc"));
             }
         }
+        public bool EsEsborrable
+        {
+            get
+            {
+                return NumeroEmpleats == 0;
+            }
+        }
 
         public int NumeroEmpleats
         {
@@ -79,6 +88,22 @@ namespace _15_SQLite.Model
             }
         }
 
+        public Emp Cap { get => cap; set
+            {
+                cap = value;
+            }
+        }
+
+
+        public ObservableCollection<Emp> Empleats
+        {
+            get
+            {
+                return EmpDB.GetEmpleatsDepartament(DeptNo);
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
     }
 }
