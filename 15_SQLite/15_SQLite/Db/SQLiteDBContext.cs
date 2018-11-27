@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using _15_SQLite.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace _15_SQLite.Db
 {
-    class SQLiteDBContext :  DbContext 
+    class SQLiteDBContext : DbContext
     {
         public static string DB_FILENAME { get { return "empresa.db"; } }
         public static string DB_PATH { get { return "db"; } }
@@ -18,4 +19,6 @@ namespace _15_SQLite.Db
             optionBuilder.UseSqlite($"Filename={DB_PATH}/{DB_FILENAME}");
         }
     }
+
 }
+

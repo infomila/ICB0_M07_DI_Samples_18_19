@@ -95,6 +95,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ContentDialogEmpleats.xaml.cs">
+      <DependentUpon>ContentDialogEmpleats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Db\DBUtils.cs" />
     <Compile Include="Db\DeptDB.cs" />
     <Compile Include="Db\EmpDB.cs" />
@@ -129,6 +132,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ContentDialogEmpleats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

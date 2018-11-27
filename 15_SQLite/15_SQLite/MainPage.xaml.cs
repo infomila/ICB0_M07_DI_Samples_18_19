@@ -78,6 +78,13 @@ namespace _15_SQLite
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+
+           /* using (var db = new SQLiteDBContext())
+            {
+                lsvDepartaments.ItemsSource = db.Dept.ToList();
+            }*/
+
+
             lsvDepartaments.ItemsSource = DeptDB.GetDepts();
             dgrEmps.ItemsSource = (IEnumerable<Dept>)lsvDepartaments.ItemsSource;
         }
@@ -206,6 +213,22 @@ namespace _15_SQLite
             SolidColorBrush colorBrushRed = new SolidColorBrush(Color.FromArgb(255, 200,0,0));
             SolidColorBrush colorBrushWhite = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             txb.Background = nomValid ? colorBrushWhite : colorBrushRed;
+        }
+
+  
+
+        private async void dgrEmps_DoubleTappedAsync(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            if (dgrEmps.SelectedItem != null)
+            {
+                ContentDialogEmpleats cde = new ContentDialogEmpleats((Dept)dgrEmps.SelectedItem);
+                ContentDialogResult res = await cde.ShowAsync();
+                if(res == ContentDialogResult.Primary )
+                {
+                    Dept d = (Dept) dgrEmps.SelectedItem;
+                    d.Cap = cde.EmpleatSeleccionat;
+                }
+            }
         }
     }
 }

@@ -117,8 +117,8 @@
                 <RowDefinition  Height="*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <controls:DataGrid x:Name="dgrEmps" Grid.Row="0" AutoGenerateColumns="False">
-                <controls:DataGrid.Columns>
+            <controls:DataGrid x:Name="dgrEmps" Grid.Row="0" AutoGenerateColumns="False" DoubleTapped="dgrEmps_DoubleTappedAsync">
+                <controls:DataGrid.Columns >
                     <controls:DataGridTextColumn 
                         IsReadOnly="True"
                         Header="Número" 

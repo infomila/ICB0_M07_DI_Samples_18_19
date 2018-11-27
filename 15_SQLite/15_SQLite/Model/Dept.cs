@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace _15_SQLite.Model
 {
-    class Dept: INotifyPropertyChanged
+    public class Dept: INotifyPropertyChanged
     {
         private int deptNo;
         private string dnom;

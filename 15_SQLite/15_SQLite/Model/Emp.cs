@@ -1,6 +1,6 @@
 ﻿namespace _15_SQLite.Model
 {
-    internal class Emp
+    public class Emp
     {
         private int num;
         private string nom;
