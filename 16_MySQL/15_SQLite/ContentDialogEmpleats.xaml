@@ -1,0 +1,22 @@
+﻿<ContentDialog
+    x:Class="_15_SQLite.ContentDialogEmpleats"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_15_SQLite"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Title="Triar cap de departament:"
+    PrimaryButtonText="Ok"    
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    Loaded="ContentDialog_Loaded"
+    >
+
+    <Grid>
+        <controls:DataGrid x:Name="dgrEmpleats" SelectionChanged="dgrEmpleats_SelectionChanged">
+            
+        </controls:DataGrid>
+    </Grid>
+</ContentDialog>
