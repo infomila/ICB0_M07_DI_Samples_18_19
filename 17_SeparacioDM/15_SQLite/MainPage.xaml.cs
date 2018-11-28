@@ -1,5 +1,6 @@
-﻿using _15_SQLite.Db;
-using _15_SQLite.Model;
+﻿
+using EmpresaDM.Db;
+using EmpresaDM.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,11 +79,6 @@ namespace _15_SQLite
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
-           /* using (var db = new SQLiteDBContext())
-            {
-                lsvDepartaments.ItemsSource = db.Dept.ToList();
-            }*/
 
 
             lsvDepartaments.ItemsSource = DeptDB.GetDepts();

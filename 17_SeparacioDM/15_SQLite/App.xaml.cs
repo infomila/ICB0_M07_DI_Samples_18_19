@@ -1,5 +1,4 @@
-﻿using _15_SQLite.Db;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,8 +32,43 @@ namespace _15_SQLite
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             // Demanar la inicialització de la BD
+            InicialitzaBDAsync();
 
         }
+        private async System.Threading.Tasks.Task InicialitzaBDAsync()
+        {
+            // Assegureu-vos que:
+            // a) l'arxiu està a Assets, i l'heu inclòs al projecte
+            // b) a les propietats de l'arxius la "Acción de compilación" és "Contenido"
+
+            if (!EmpresaDM.Recursos.IsSQLite) return;
+            try
+            {
+                string name = EmpresaDM.Recursos.DB_FILENAME;
+                var dbFolderAppData = ApplicationData.Current.LocalFolder;
+                StorageFolder dbFolder = await dbFolderAppData.CreateFolderAsync(EmpresaDM.Recursos.DB_PATH, CreationCollisionOption.OpenIfExists);
+                StorageFile dbFile = null;
+                try
+                {
+                    dbFile = await dbFolder.GetFileAsync(name);
+                }
+                catch (FileNotFoundException ex)
+                {
+                    //------------------------------------
+                    dbFile = await dbFolder.CreateFileAsync(name);
+                    var streamEscriptura = await dbFile.OpenAsync(FileAccessMode.ReadWrite);
+                    Stream streamLectura = EmpresaDM.Recursos.GetArxiuDB();
+                    await streamLectura.CopyToAsync(streamEscriptura.AsStreamForWrite());
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
 
         /// <summary>
         /// Se invoca cuando el usuario final inicia la aplicación normalmente. Se usarán otros puntos

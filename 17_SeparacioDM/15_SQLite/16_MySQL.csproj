@@ -98,15 +98,9 @@
     <Compile Include="ContentDialogEmpleats.xaml.cs">
       <DependentUpon>ContentDialogEmpleats.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Db\DBUtils.cs" />
-    <Compile Include="Db\DeptDB.cs" />
-    <Compile Include="Db\EmpDB.cs" />
-    <Compile Include="Db\SQLiteDBContext.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\Dept.cs" />
-    <Compile Include="Model\Emp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -150,18 +144,18 @@
     <PackageReference Include="Microsoft.Toolkit.UWP.UI.Controls.DataGrid">
       <Version>5.0.0</Version>
     </PackageReference>
-    <PackageReference Include="MySql.Data.EntityFrameworkCore">
-      <Version>6.10.8</Version>
-    </PackageReference>
     <PackageReference Include="PropertyChanged.Fody">
       <Version>2.5.14</Version>
-    </PackageReference>
-    <PackageReference Include="System.Diagnostics.Process">
-      <Version>4.3.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\db\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmpresaDM\EmpresaDM.csproj">
+      <Project>{59ABB3FA-F28C-4392-AC86-D170AA8B4831}</Project>
+      <Name>EmpresaDM</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
