@@ -123,8 +123,17 @@
   <data name="String_Age.Text" xml:space="preserve">
     <value>Edat</value>
   </data>
+  <data name="String_Checkbox_Active.Content" xml:space="preserve">
+    <value>Actiu</value>
+  </data>
   <data name="String_Name.Text" xml:space="preserve">
     <value>Nom</value>
+  </data>
+  <data name="String_Radio_Man.Content" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="String_Radio_Woman.Content" xml:space="preserve">
+    <value>Dona</value>
   </data>
   <data name="String_Sex.Text" xml:space="preserve">
     <value>Sexe</value>

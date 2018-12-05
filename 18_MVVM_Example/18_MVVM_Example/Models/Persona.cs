@@ -43,6 +43,14 @@ namespace _18_MVVM_Example.Models
             return unNom.Trim().Length > 3;
         }
 
+        public static bool ValidaEdat(string edatS)
+        {
+            int edat;
+            bool ok = int.TryParse(edatS, out edat);
+            if (ok) return ValidaEdat(edat);
+            else return false;
+        }
+
         public static bool ValidaEdat( int edat)
         {
             return edat >= 1;

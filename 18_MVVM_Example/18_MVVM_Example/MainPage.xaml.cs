@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
+using Windows.ApplicationModel.Resources.Core;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Globalization;
@@ -30,25 +31,22 @@ namespace _18_MVVM_Example
         public MainPage()
         {
 
-
             this.InitializeComponent();
 
+            //---------------------------------------------------
+            // Associem el View Model que li correspon a la pàgina
+            // al DataContext
             this.DataContext = new MainPageViewModel();
+            //---------------------------------------------------
 
-            Messenger.Default.Register<ShowMessageDialog>
+
+            /*Messenger.Default.Register<ShowMessageDialog>
             (
                 this,
                 (action) => ReceiveMessage(action)
-            );
+            );*/
         }
 
-        private async void ReceiveMessage(ShowMessageDialog action)
-        {
-            var messageDialog = new MessageDialog(action.Message);
-
-            await messageDialog.ShowAsync();
-
-        }
 
         private void cboIdiomes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -56,7 +54,8 @@ namespace _18_MVVM_Example
             //-------------------------------------------------
             ApplicationLanguages.PrimaryLanguageOverride =
                 cboIdiomes.SelectedValue.ToString();
-            
+            ResourceContext.GetForCurrentView().Reset();
+            ResourceContext.GetForViewIndependentUse().Reset();
             this.Frame.Navigate(typeof(MainPage));            
         }
 
@@ -65,5 +64,16 @@ namespace _18_MVVM_Example
             cboIdiomes.ItemsSource = 
                 new List<string> { "ca-es", "es-es", "en-us" };
         }
+
+
+
+        /*
+    private async void ReceiveMessage(ShowMessageDialog action)
+    {
+        var messageDialog = new MessageDialog(action.Message);
+
+        await messageDialog.ShowAsync();
+
+    }*/
     }
 }
