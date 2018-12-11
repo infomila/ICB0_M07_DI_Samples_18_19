@@ -1,4 +1,5 @@
 ﻿using _18_MVVM_Example.ViewModels;
+using _18_MVVM_Example.Views;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -44,13 +45,20 @@ namespace _18_MVVM_Example
             //---------------------------------------------------
 
 
-            /*Messenger.Default.Register<ShowMessageDialog>
+            Messenger.Default.Register<MissatgeResultatDesarPersona>
             (
                 this,
-                (action) => ReceiveMessage(action)
-            );*/
+                (action) => RebreMissatgeResultatDesarPersona(action)
+            );
         }
 
+         private async void RebreMissatgeResultatDesarPersona(MissatgeResultatDesarPersona m)
+        {
+            string title = m.isOk? "Canvis desats satisfactòriament":"Error desant les dades";
+            string content = m.isOk? "": m.errMsg;
+            MessageDialog md = new MessageDialog(content, title);
+            await md.ShowAsync();
+        }
 
         private void cboIdiomes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

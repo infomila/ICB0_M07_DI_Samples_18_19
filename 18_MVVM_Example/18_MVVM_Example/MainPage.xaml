@@ -66,7 +66,7 @@
         </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
             <Button IsEnabled="{Binding PucCancelar, Mode=OneWay}" Click="{x:Bind ViewModel.ButtonCancel_Click}">Cancel</Button>
-            <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}" >Save</Button>
+            <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}" Click="{x:Bind ViewModel.ButtonDesar_Click}" >Save</Button>
         </StackPanel>
     </StackPanel>
 </Page>

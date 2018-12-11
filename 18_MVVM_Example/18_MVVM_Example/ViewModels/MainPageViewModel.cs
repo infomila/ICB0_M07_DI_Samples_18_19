@@ -1,4 +1,5 @@
 ﻿using _18_MVVM_Example.Models;
+using _18_MVVM_Example.Views;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -103,19 +104,25 @@ namespace _18_MVVM_Example.ViewModels
             PucCancelar = false;
         }
 
-
-
-
-        /*
-        private RelayCommand _showMessageCommand;
-
-        public RelayCommand ShowMessageCommand => _showMessageCommand ?? (_showMessageCommand = new RelayCommand(ShowMessage));
-
-
-        private void ShowMessage()
+        public void ButtonDesar_Click(object sender, RoutedEventArgs e)
         {
-            var msg = new ShowMessageDialog { Message = "Hello World" };
-            Messenger.Default.Send<ShowMessageDialog>(msg);
-        }*/
+            mPersonaActual.Nom = this.Nom;
+            mPersonaActual.Edat = Int32.Parse(this.Edat);
+            mPersonaActual.Actiu = this.Actiu;
+            mPersonaActual.Sexe = this.EsHome;
+            PucCancelar = false;
+            NotificaResultatDesar(true, "");
+        }
+        
+
+        private void NotificaResultatDesar(bool isOk, string errMsg)
+        {
+
+            // 1.- Crear un missatge ( paquet de dades )
+            MissatgeResultatDesarPersona m = new MissatgeResultatDesarPersona(isOk, errMsg);
+
+            // 2.- Enviar el missatge mitjançant el servei de missatgeria.
+            Messenger.Default.Send<MissatgeResultatDesarPersona>(m);
+        }
     }
 }
