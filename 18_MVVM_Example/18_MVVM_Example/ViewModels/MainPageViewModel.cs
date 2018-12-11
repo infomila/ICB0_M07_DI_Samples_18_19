@@ -24,6 +24,12 @@ namespace _18_MVVM_Example.ViewModels
             this.actiu = p.Actiu;
             this.esHome = p.Sexe;
             this.fotoURL = p.ImageURL;
+            this.PropertyChanged += Canvis;
+        }
+
+        private void Canvis(object sender, PropertyChangedEventArgs e)
+        {
+            int i = 0;
         }
 
         string nom;
@@ -34,7 +40,7 @@ namespace _18_MVVM_Example.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public string Nom { get => nom; set => nom = value; }
+        public string Nom { get => nom; set { nom = value; } }
         public string Edat { get => edat; set => edat = value; }
         public bool Actiu { get => actiu; set => actiu = value; }
         public bool EsHome { get => esHome; set => esHome = value; }
