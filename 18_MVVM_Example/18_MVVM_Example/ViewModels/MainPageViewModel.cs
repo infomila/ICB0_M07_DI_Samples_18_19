@@ -8,28 +8,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace _18_MVVM_Example.ViewModels
 {
-    class MainPageViewModel:INotifyPropertyChanged
+    public class MainPageViewModel:INotifyPropertyChanged
     {
+        private Persona mPersonaActual;
 
         public MainPageViewModel()
         {
-            Persona p = Persona.GetPersones()[0];
-            this.nom = p.Nom;
-            this.edat = p.Edat + "";
-            this.actiu = p.Actiu;
-            this.esHome = p.Sexe;
-            this.fotoURL = p.ImageURL;
+            mPersonaActual = Persona.GetPersones()[0];
+            ActualizaDadesPersona();
             this.PropertyChanged += Canvis;
+            hiHaCanvisPendents = false;
+        }
+
+        private void ActualizaDadesPersona()
+        {
+            this.Nom = mPersonaActual.Nom;
+            this.Edat = mPersonaActual.Edat + "";
+            this.Actiu = mPersonaActual.Actiu;
+            this.EsHome = mPersonaActual.Sexe;
+            this.fotoURL = mPersonaActual.ImageURL;
         }
 
         private void Canvis(object sender, PropertyChangedEventArgs e)
         {
-            int i = 0;
+            if (e.PropertyName != "PucCancelar" && e.PropertyName != "PucDesar")
+            {
+                PucCancelar = true;
+            }
         }
 
         string nom;
@@ -37,6 +48,7 @@ namespace _18_MVVM_Example.ViewModels
         bool actiu;
         bool esHome;
         string fotoURL;
+        private bool hiHaCanvisPendents;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -66,12 +78,30 @@ namespace _18_MVVM_Example.ViewModels
         {
             get
             {
-                return Persona.ValidaNom(Nom) && Persona.ValidaEdat(Edat);
+                return hiHaCanvisPendents && Persona.ValidaNom(Nom) && Persona.ValidaEdat(Edat);
             }
         }
 
 
+        public bool PucCancelar
+        {
+            get
+            {
+                return hiHaCanvisPendents;
+            }
+            set
+            {
+                hiHaCanvisPendents = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PucDesar"));
+            }
+        }
 
+
+        public void ButtonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            ActualizaDadesPersona();
+            PucCancelar = false;
+        }
 
 
 

@@ -48,8 +48,8 @@
                      ></TextBox>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <RadioButton x:Uid="String_Radio_Man" IsChecked="{Binding EsHome , Converter={StaticResource S2CConverter},ConverterParameter=H}" ></RadioButton>
-                <RadioButton x:Uid="String_Radio_Woman"  IsChecked="{Binding EsHome , Converter={StaticResource S2CConverter}, ConverterParameter=D}"></RadioButton>
+                <RadioButton x:Uid="String_Radio_Man"    IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter},ConverterParameter=H}" ></RadioButton>
+                <RadioButton x:Uid="String_Radio_Woman"  IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter}, ConverterParameter=D}"></RadioButton>
             </StackPanel>
             <CheckBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"
                       IsChecked="{Binding Actiu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -57,14 +57,16 @@
             <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Edat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <!-- ********************************************* -->
             <Image Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                   MaxHeight="200"
                    Source="{Binding Foto, Mode=OneWay}"
+                   Stretch="Uniform"
                    Visibility="{Binding Actiu, Mode=OneWay, Converter={StaticResource B2VConverter}}"
                    ></Image>
             
         </Grid>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
-            <Button>Cancel</Button>
-            <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}">Save</Button>
+            <Button IsEnabled="{Binding PucCancelar, Mode=OneWay}" Click="{x:Bind ViewModel.ButtonCancel_Click}">Cancel</Button>
+            <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}" >Save</Button>
         </StackPanel>
     </StackPanel>
 </Page>

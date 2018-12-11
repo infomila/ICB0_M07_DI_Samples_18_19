@@ -28,6 +28,9 @@ namespace _18_MVVM_Example
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public MainPageViewModel ViewModel { get; set; }
+
+
         public MainPage()
         {
 
@@ -36,7 +39,8 @@ namespace _18_MVVM_Example
             //---------------------------------------------------
             // Associem el View Model que li correspon a la pàgina
             // al DataContext
-            this.DataContext = new MainPageViewModel();
+            ViewModel = new MainPageViewModel();
+            this.DataContext = ViewModel;
             //---------------------------------------------------
 
 
@@ -64,6 +68,8 @@ namespace _18_MVVM_Example
             cboIdiomes.ItemsSource = 
                 new List<string> { "ca-es", "es-es", "en-us" };
         }
+
+
 
 
 
