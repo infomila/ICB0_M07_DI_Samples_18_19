@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="_18_MVVM_Example.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_18_MVVM_Example"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:_18_MVVM_Example.Converters"
+    xmlns:views="using:_18_MVVM_Example.Views"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <ComboBox x:Name="cboIdiomes" SelectionChanged="cboIdiomes_SelectionChanged" ></ComboBox>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ListView Grid.Column="0" ItemsSource="{Binding Persones, Mode=OneWay}"
+                      SelectedItem="{Binding PersonaEditada, Mode=TwoWay}"
+                      x:Name="lsvPersones">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="{Binding ImageURL}" Grid.Column="0"></Image>
+                            <TextBlock Text="{Binding Nom}" Grid.Column="1"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <views:EdicioPersonaUI  Grid.Column="1" PersonaEditada="{Binding SelectedItem, ElementName=lsvPersones, Mode=OneWay}"></views:EdicioPersonaUI>
+        </Grid>
+    </StackPanel>
+</Page>

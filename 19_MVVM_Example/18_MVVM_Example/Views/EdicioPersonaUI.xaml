@@ -1,0 +1,73 @@
+﻿<UserControl
+    x:Class="_18_MVVM_Example.Views.EdicioPersonaUI"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_18_MVVM_Example.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:_18_MVVM_Example.Converters"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Loaded="UserControl_Loaded"
+    >
+    <UserControl.Resources>
+        <converters:Sexe2CheckboxConverter x:Key="S2CConverter"></converters:Sexe2CheckboxConverter>
+        <converters:Bool2VisibilityConverter x:Key="B2VConverter"></converters:Bool2VisibilityConverter>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Padding" Value="10"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <StackPanel>
+        <Grid x:Name="grdMain">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock x:Uid="String_Name" Grid.Column="0" Grid.Row="0"></TextBlock>
+            <TextBlock x:Uid="String_Sex" Grid.Column="0" Grid.Row="1"></TextBlock>
+            <TextBlock x:Uid="String_Active" Grid.Column="0" Grid.Row="2"></TextBlock>
+            <TextBlock x:Uid="String_Age" Grid.Column="0" Grid.Row="3"></TextBlock>
+            <!-- ******************************************************* -->
+            <TextBox Grid.Column="1" Grid.Row="0" 
+                     Text="{Binding Nom,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                     Background="{Binding BackgroundNom}"
+                     ></TextBox>
+            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
+                        HorizontalAlignment="Center">
+                <RadioButton x:Uid="String_Radio_Man"    IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter},ConverterParameter=H}" ></RadioButton>
+                <RadioButton x:Uid="String_Radio_Woman"  IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter}, ConverterParameter=D}"></RadioButton>
+            </StackPanel>
+            <CheckBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"
+                      IsChecked="{Binding Actiu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      x:Uid="String_Checkbox_Active"></CheckBox>
+            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Edat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <!-- ********************************************* -->
+            <Image Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                   MaxHeight="200"
+                   Source="{Binding Foto, Mode=OneWay}"
+                   Stretch="Uniform"
+                   Visibility="{Binding Actiu, Mode=OneWay, Converter={StaticResource B2VConverter}}"
+                   ></Image>
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+            <Button IsEnabled="{Binding PucCancelar, Mode=OneWay}" Click="{x:Bind ViewModel.ButtonCancel_Click}">Cancel</Button>
+            <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}" Click="{x:Bind ViewModel.ButtonDesar_Click}" >Save</Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
