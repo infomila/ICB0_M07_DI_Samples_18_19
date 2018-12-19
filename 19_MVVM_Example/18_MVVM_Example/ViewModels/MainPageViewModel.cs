@@ -21,7 +21,6 @@ namespace _18_MVVM_Example.ViewModels
 
         public MainPageViewModel()
         {
-            //PersonaEditada = Persona.GetPersones()[0];
             Persones = Persona.GetPersones();
         }
 
@@ -35,6 +34,7 @@ namespace _18_MVVM_Example.ViewModels
             set
             {
                 p = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PersonaEditada"));
             }
         }
 

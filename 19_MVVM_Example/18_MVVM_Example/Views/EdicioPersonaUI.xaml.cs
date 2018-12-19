@@ -21,8 +21,13 @@ namespace _18_MVVM_Example.Views
 {
     public sealed partial class EdicioPersonaUI : UserControl
     {
+        public EdicioPersonaUI()
+        {
+            this.InitializeComponent();
 
-
+            ViewModel = new EdicioPersonaViewModel();
+            this.DataContext = ViewModel;
+        }
 
         public Persona PersonaEditada
         {
@@ -47,18 +52,16 @@ namespace _18_MVVM_Example.Views
             // al DataContext
             if (PersonaEditada != null)
             {
-                ViewModel = new EdicioPersonaViewModel(PersonaEditada);
-                this.DataContext = ViewModel;
+                //ViewModel = new EdicioPersonaViewModel(PersonaEditada);
+                ViewModel.PersonaActual = PersonaEditada;
+                //this.DataContext = ViewModel;
             }
             //---------------------------------------------------  
         }
 
         public EdicioPersonaViewModel ViewModel { get; set; }
 
-        public EdicioPersonaUI()
-        {
-            this.InitializeComponent();
-        }
+      
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {

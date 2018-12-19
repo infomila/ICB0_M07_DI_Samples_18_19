@@ -14,6 +14,7 @@
     <UserControl.Resources>
         <converters:Sexe2CheckboxConverter x:Key="S2CConverter"></converters:Sexe2CheckboxConverter>
         <converters:Bool2VisibilityConverter x:Key="B2VConverter"></converters:Bool2VisibilityConverter>
+        <converters:Bool2ErrorBackground x:Key="B2EConverter"></converters:Bool2ErrorBackground>
 
         <Style TargetType="TextBlock">
             <Setter Property="Margin" Value="10"></Setter>
@@ -24,7 +25,7 @@
             <Setter Property="Padding" Value="10"></Setter>
         </Style>
     </UserControl.Resources>
-    <StackPanel>
+    <StackPanel Orientation="Vertical">
         <Grid x:Name="grdMain">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -45,17 +46,24 @@
             <!-- ******************************************************* -->
             <TextBox Grid.Column="1" Grid.Row="0" 
                      Text="{Binding Nom,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     Background="{Binding BackgroundNom}"
+                     Background="{Binding NomCorrecte, Converter={StaticResource B2EConverter}}"
+                     IsEnabled="{Binding UIControlActiu, Mode=OneWay}"
                      ></TextBox>
             <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal"
                         HorizontalAlignment="Center">
-                <RadioButton x:Uid="String_Radio_Man"    IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter},ConverterParameter=H}" ></RadioButton>
-                <RadioButton x:Uid="String_Radio_Woman"  IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter}, ConverterParameter=D}"></RadioButton>
+                <RadioButton x:Uid="String_Radio_Man"    IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter},ConverterParameter=H}"  IsEnabled="{Binding UIControlActiu, Mode=OneWay}"></RadioButton>
+                <RadioButton x:Uid="String_Radio_Woman"  IsChecked="{Binding EsHome , Mode=TwoWay, Converter={StaticResource S2CConverter}, ConverterParameter=D}" IsEnabled="{Binding UIControlActiu, Mode=OneWay}"></RadioButton>
             </StackPanel>
             <CheckBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"
                       IsChecked="{Binding Actiu, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      IsEnabled="{Binding UIControlActiu, Mode=OneWay}"
                       x:Uid="String_Checkbox_Active"></CheckBox>
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Edat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Grid.Column="1" Grid.Row="3" 
+                     IsEnabled="{Binding UIControlActiu, Mode=OneWay}"
+                     Background="{Binding EdatCorrecta, Converter={StaticResource B2EConverter}}"
+                     Text="{Binding Edat,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                
+            </TextBox>
             <!-- ********************************************* -->
             <Image Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
                    MaxHeight="200"
@@ -65,9 +73,27 @@
                    ></Image>
 
         </Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+
+        <CommandBar >
+            <!--StackPanel Orientation="Horizontal"-->
+                <AppBarButton Icon="Delete" Label="Esborrar"
+                               Click="{x:Bind ViewModel.ButtonEsborrar_Click}"
+                              IsEnabled="{Binding PucEsborrar, Mode=OneWay, FallbackValue=false, TargetNullValue=false}"
+                              ></AppBarButton>
+            <AppBarButton Icon="Add"  Label="Nou"  
+                          Click="{x:Bind ViewModel.ButtonAdd_Click}"
+                          IsEnabled="{Binding PucAfegir, Mode=OneWay, FallbackValue=false, TargetNullValue=false}"></AppBarButton>
+                <AppBarButton Icon="Cancel" 
+                              IsEnabled="{Binding PucCancelar, Mode=OneWay, FallbackValue=false, TargetNullValue=false}" Click="{x:Bind ViewModel.ButtonCancel_Click}" Label="Cancel"></AppBarButton>
+            <AppBarButton Icon="Save" IsEnabled="{Binding PucDesar, TargetNullValue=false, FallbackValue=false}" Click="{x:Bind ViewModel.ButtonDesar_Click}" Label="Save"></AppBarButton>
+            <!--/-->
+        </CommandBar>
+
+        <!--StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
             <Button IsEnabled="{Binding PucCancelar, Mode=OneWay}" Click="{x:Bind ViewModel.ButtonCancel_Click}">Cancel</Button>
             <Button Margin="40,0,0,0" IsEnabled="{Binding PucDesar}" Click="{x:Bind ViewModel.ButtonDesar_Click}" >Save</Button>
-        </StackPanel>
+        </-->
+        
+        
     </StackPanel>
 </UserControl>

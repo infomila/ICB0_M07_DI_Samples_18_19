@@ -33,7 +33,20 @@ namespace _18_MVVM_Example.Models
         private bool actiu;
         private string imageURL;
         private int edat;
+        private bool isNew;
 
+        public void Save()
+        {
+            isNew = false;
+        }
+
+        public Persona()
+        {
+            this.nom = "";
+            this.imageURL = "ms-appx:///Assets/Square150x150Logo.scale-200.png";
+            this.edat = 0;
+            isNew = true;
+        }
 
         public Persona(string nom, bool sexe, bool actiu, string imageURL, int edat)
         {
@@ -42,11 +55,17 @@ namespace _18_MVVM_Example.Models
             Actiu = actiu;
             ImageURL = imageURL;
             Edat = edat;
+            isNew = false;
+        }
+
+        public bool IsNew
+        {
+            get { return isNew; }
         }
 
         public static bool ValidaNom(string unNom)
         {
-            return unNom.Trim().Length > 3;
+            return unNom!=null && unNom.Trim().Length > 3;
         }
 
         public static bool ValidaEdat(string edatS)

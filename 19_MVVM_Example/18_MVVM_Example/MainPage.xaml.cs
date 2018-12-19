@@ -50,10 +50,25 @@ namespace _18_MVVM_Example
                 this,
                 (action) => RebreMissatgeResultatDesarPersona(action)
             );
+            Messenger.Default.Register<MissatgePersonaEsborrada>
+            (
+                this,
+                (action) => RebreMissatgePersonaEsborrada(action)
+            );
+            
         }
 
-         private async void RebreMissatgeResultatDesarPersona(MissatgeResultatDesarPersona m)
+        private void RebreMissatgePersonaEsborrada(MissatgePersonaEsborrada action)
         {
+            if (lsvPersones.Items.Count > 0)
+            {
+                lsvPersones.SelectedIndex = 0;
+            }
+        }
+
+        private async void RebreMissatgeResultatDesarPersona(MissatgeResultatDesarPersona m)
+        {
+            this.lsvPersones.SelectedItem = m.persona;
             string title = m.isOk? "Canvis desats satisfactòriament":"Error desant les dades";
             string content = m.isOk? "": m.errMsg;
             MessageDialog md = new MessageDialog(content, title);

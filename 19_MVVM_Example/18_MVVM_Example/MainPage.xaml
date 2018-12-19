@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     Loaded="Page_Loaded"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    <ScrollViewer>
     <StackPanel>
         <ComboBox x:Name="cboIdiomes" SelectionChanged="cboIdiomes_SelectionChanged" ></ComboBox>
         <Grid>
@@ -20,7 +20,7 @@
             </Grid.ColumnDefinitions>
 
             <ListView Grid.Column="0" ItemsSource="{Binding Persones, Mode=OneWay}"
-                      SelectedItem="{Binding PersonaEditada, Mode=TwoWay}"
+                      SelectedItem="{Binding PersonaEditada, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       x:Name="lsvPersones">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -35,7 +35,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <views:EdicioPersonaUI  Grid.Column="1" PersonaEditada="{Binding SelectedItem, ElementName=lsvPersones, Mode=OneWay}"></views:EdicioPersonaUI>
+            <views:EdicioPersonaUI 
+                x:Name="edicioPersonaUI"
+                Grid.Column="1" 
+                                    PersonaEditada="{Binding SelectedItem, ElementName=lsvPersones, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></views:EdicioPersonaUI>
         </Grid>
+
     </StackPanel>
+    </ScrollViewer>
 </Page>
