@@ -30,7 +30,12 @@ namespace ApplicacioDemoDocumentacio.model
         /// <param name="cognom2"> Segon cognom de la persona *(mínim 3 caràcters)* . **Opcional** (pot ser null)</param>
         public Persona(int id, string nif, string nom, string cognom1, string cognom2)
         {
+            NIF = nif;
 
+            if(nif=="")
+            {
+                throw new Exception("");
+            }
         }
 
         /// <summary>

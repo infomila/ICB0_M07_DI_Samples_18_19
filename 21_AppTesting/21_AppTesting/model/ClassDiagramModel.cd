@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Diagrama de classes del namespace &quot;model&quot;">
+    <Position X="6.947" Y="0.598" Height="0.75" Width="1.7" />
+  </Comment>
+  <Class Name="ApplicacioDemoDocumentacio.model.Persona">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAI=</HashCode>
+      <FileName>model\Persona.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicacioDemoDocumentacio.model.Alumne">
+    <Position X="8.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>model\Alumne.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ApplicacioDemoDocumentacio.model.Professor">
+    <Position X="11.75" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>model\Professor.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="alumnesTutoritzats" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

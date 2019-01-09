@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicacioDemoDocumentacio", "ApplicacioDemoDocumentacio\ApplicacioDemoDocumentacio.csproj", "{C34F95B1-98B7-4808-A2FA-2529A6CEDAC9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT", "UT\UT.csproj", "{A0C26C09-372E-4E62-AE99-95E1137CBE8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -33,6 +35,24 @@ Global
 		{C34F95B1-98B7-4808-A2FA-2529A6CEDAC9}.Release|x86.ActiveCfg = Release|x86
 		{C34F95B1-98B7-4808-A2FA-2529A6CEDAC9}.Release|x86.Build.0 = Release|x86
 		{C34F95B1-98B7-4808-A2FA-2529A6CEDAC9}.Release|x86.Deploy.0 = Release|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|ARM.Build.0 = Debug|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x64.ActiveCfg = Debug|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x64.Build.0 = Debug|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x64.Deploy.0 = Debug|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x86.ActiveCfg = Debug|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x86.Build.0 = Debug|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Debug|x86.Deploy.0 = Debug|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|ARM.ActiveCfg = Release|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|ARM.Build.0 = Release|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|ARM.Deploy.0 = Release|ARM
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x64.ActiveCfg = Release|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x64.Build.0 = Release|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x64.Deploy.0 = Release|x64
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x86.ActiveCfg = Release|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x86.Build.0 = Release|x86
+		{A0C26C09-372E-4E62-AE99-95E1137CBE8C}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
