@@ -150,7 +150,7 @@ namespace _18_MVVM_Example.ViewModels
                 return PersonaActual != null && PucCancelar && Persona.ValidaNom(Nom) && Persona.ValidaEdat(Edat);
             }
         }
-        [DependsOn("PersonaActual", "PersonaActual")]
+        [DependsOn("PersonaActual")]
         public bool PucEsborrar
         {
             get { return PersonaActual != null && !PersonaActual.IsNew; }

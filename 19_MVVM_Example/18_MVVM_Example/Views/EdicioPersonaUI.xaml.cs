@@ -52,9 +52,7 @@ namespace _18_MVVM_Example.Views
             // al DataContext
             if (PersonaEditada != null)
             {
-                //ViewModel = new EdicioPersonaViewModel(PersonaEditada);
                 ViewModel.PersonaActual = PersonaEditada;
-                //this.DataContext = ViewModel;
             }
             //---------------------------------------------------  
         }
