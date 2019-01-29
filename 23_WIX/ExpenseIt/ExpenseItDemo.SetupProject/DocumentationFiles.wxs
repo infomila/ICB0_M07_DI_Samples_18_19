@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <DirectoryRef Id="DIR_HELPFILES">
+            <Component Id="cmp7FC18F7741A91FAB808A77BCD222A2C4" Guid="{9B03A9AF-162F-4AF2-B3D6-2750F60F8C40}">
+                <File Id="fil902ABD72DC988349749E1C6183D5F3F3" KeyPath="yes" Source="$(var.PathDocumentacio)\index.html" />
+            </Component>
+            <Directory Id="dir6869079F6F475DECFBC4C6FD41776C6F" Name="ExpenseIt - Standalone Demo_fitxers">
+                <Component Id="cmpA23CA3DA635F305DD2AF8EB12E40C49A" Guid="{08CBA3A8-1259-4936-A3C2-6104F71D7576}">
+                    <File Id="fil43FB51197C56EBBD1D8950A7A3F8D33B" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\ai.js" />
+                </Component>
+                <Component Id="cmp82AA59DC582C7D7F64A14F9450578AE5" Guid="{FF398D20-4F11-4250-B5E4-1147454654D9}">
+                    <File Id="filFA2C9FEF08771B718F1D646A10891BC0" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\broker-config.js" />
+                </Component>
+                <Component Id="cmpC38B1C5FA8A3560152D18489C372B0D7" Guid="{63B202FB-339E-4AAD-A8D7-09C9516A75C2}">
+                    <File Id="filCBDB20509936782E4D5F85A1E44C3C50" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\broker.js" />
+                </Component>
+                <Component Id="cmpC389BB7F11B58B6E89151B44F592B01F" Guid="{025B566E-94F1-432A-9543-19FFA0B280B5}">
+                    <File Id="fil8844032A1466718920B7B5DE7A8F034F" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\Combined.css" />
+                </Component>
+                <Component Id="cmpD229A0A94F2F205B6ED28B1FD57C1B68" Guid="{E108D9D4-7087-4D4C-BE22-879E323DB72C}">
+                    <File Id="filACE085440ED9711F99E0E48B0948D132" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\Combined.js" />
+                </Component>
+                <Component Id="cmp89B04BDA79C22A0F69ACEBFABACD47B5" Guid="{F0E5DC30-BB84-4D57-832F-DF4C813590A8}">
+                    <File Id="fil6FCA5F71A463DC795417AADDD386894F" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\Combined_002.js" />
+                </Component>
+                <Component Id="cmp22A6BD7E62299CFC4F30561C50AA1BED" Guid="{C9E51219-FA92-4C66-9E4B-9255EB9F7239}">
+                    <File Id="fil1422840D39FB78DD40B5C47C9CD3015C" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\Combined_003.js" />
+                </Component>
+                <Component Id="cmp8D8C02612D1BF4066893DDCE973B3DC2" Guid="{8D1699A3-546B-4D21-B25E-7BD88DCDC5C6}">
+                    <File Id="fil0EE8BA01D763D5468A224B2E8958293E" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\HeaderFooterSprite.png" />
+                </Component>
+                <Component Id="cmp6352096D9BAD09CC9820F45FCC447232" Guid="{B08C001B-EE68-40CC-9B0B-2A9D237B17E5}">
+                    <File Id="filA6DD2912D9A6354391566794C732C1FB" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\ImageSprite.png" />
+                </Component>
+                <Component Id="cmp3E8C808E84C2240C844785F14994008F" Guid="{415A8D1C-D2F5-42C5-8A7F-C87560C84BE2}">
+                    <File Id="filD3E5B36F506017193F5D54EAC753F22A" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\jquery-1.js" />
+                </Component>
+                <Component Id="cmp55A2C6E98A0DA7766122066FE59800A6" Guid="{1F320E46-91A6-4583-B50C-4C5FBF75F8D1}">
+                    <File Id="fil055C6942FEACD06AAF48C45EB00E3AF9" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\jsll-4.js" />
+                </Component>
+                <Component Id="cmp96A0F7148D8E81C60E0573A641A847F6" Guid="{F6140D6E-C0EE-4993-8CAE-5B3F0ED7E980}">
+                    <File Id="filC52021580B101F83E98BDBD748D0ED72" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\mscc-0.css" />
+                </Component>
+                <Component Id="cmp14C2F8EBFD3788EB38FBB70072ED50CA" Guid="{D93E40C3-4BE0-450A-8293-E68252E1CFAE}">
+                    <File Id="filEEEFB9073E47D53EAB029DD2D1D01607" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\mscc-0.js" />
+                </Component>
+                <Component Id="cmp293F9114EA2E79D41A8D0C51D01B3055" Guid="{8B4C18BB-214D-4FA2-ADEE-6B86EEDCAA1E}">
+                    <File Id="fil993E88C0749A3907C1734773C223F2A1" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\PrintView.css" />
+                </Component>
+                <Component Id="cmp5ABB403104A71F158F6A8CA3A1ECE15A" Guid="{9ADC8FFC-7502-487B-9ED8-3A3798BDC25B}">
+                    <File Id="fil6BDABB66CB0A3EA2303DCAAE6BA1A46D" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\SearchBox.js" />
+                </Component>
+                <Component Id="cmp22DE9880A15812CC8344605B8292DD63" Guid="{6BEF2215-4815-4DF7-9E17-8723A76240A5}">
+                    <File Id="fil1F9156562119C9DDC13E513C77C14AFF" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\SearchBox_002.js" />
+                </Component>
+                <Component Id="cmp3C16BDE694BE760C86D4E0DB0FB37F25" Guid="{04DE81DC-5B84-4408-B423-EEAC501C21EF}">
+                    <File Id="filE7F0591CE07DA3F40191FCD75D9C2D47" KeyPath="yes" Source="$(var.PathDocumentacio)\ExpenseIt - Standalone Demo_fitxers\t.js" />
+                </Component>
+            </Directory>
+        </DirectoryRef>
+    </Fragment>
+    <Fragment>
+        <ComponentGroup Id="CG_DocumentationFiles">
+            <ComponentRef Id="cmp7FC18F7741A91FAB808A77BCD222A2C4" />
+            <ComponentRef Id="cmpA23CA3DA635F305DD2AF8EB12E40C49A" />
+            <ComponentRef Id="cmp82AA59DC582C7D7F64A14F9450578AE5" />
+            <ComponentRef Id="cmpC38B1C5FA8A3560152D18489C372B0D7" />
+            <ComponentRef Id="cmpC389BB7F11B58B6E89151B44F592B01F" />
+            <ComponentRef Id="cmpD229A0A94F2F205B6ED28B1FD57C1B68" />
+            <ComponentRef Id="cmp89B04BDA79C22A0F69ACEBFABACD47B5" />
+            <ComponentRef Id="cmp22A6BD7E62299CFC4F30561C50AA1BED" />
+            <ComponentRef Id="cmp8D8C02612D1BF4066893DDCE973B3DC2" />
+            <ComponentRef Id="cmp6352096D9BAD09CC9820F45FCC447232" />
+            <ComponentRef Id="cmp3E8C808E84C2240C844785F14994008F" />
+            <ComponentRef Id="cmp55A2C6E98A0DA7766122066FE59800A6" />
+            <ComponentRef Id="cmp96A0F7148D8E81C60E0573A641A847F6" />
+            <ComponentRef Id="cmp14C2F8EBFD3788EB38FBB70072ED50CA" />
+            <ComponentRef Id="cmp293F9114EA2E79D41A8D0C51D01B3055" />
+            <ComponentRef Id="cmp5ABB403104A71F158F6A8CA3A1ECE15A" />
+            <ComponentRef Id="cmp22DE9880A15812CC8344605B8292DD63" />
+            <ComponentRef Id="cmp3C16BDE694BE760C86D4E0DB0FB37F25" />
+        </ComponentGroup>
+    </Fragment>
+</Wix>

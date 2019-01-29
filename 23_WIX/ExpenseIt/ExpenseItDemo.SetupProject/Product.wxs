@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  
+	<Product Id="{aa0a92c1-32c1-48a6-a328-d2dad1916304}" 
+           Name="ExpenseItDemo.SetupProject" 
+           Language="1033" 
+           Version="1.0.0.0" 
+           Manufacturer="IESMila"
+           UpgradeCode="25b914a2-b4d0-4e22-b7c0-9b8542f2eddc">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate />
+    
+    <!-- NOTA: Level=1 significa que el feature s'instal·la en la versió "Typical" , a partir de 2 (inclòs) , només s'instal·lent si es fa un "Custom" i es selecciona el component.-->  
+		<Feature Id="ProductFeature" Title="ExpenseItDemo Desktop Aplication" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+    <Feature Id="HelpFeature" Title="ExpenseItDemo Help Files" Level="2">
+      <ComponentGroupRef Id="CG_DocumentationFiles" />
+    </Feature>
+
+    <!--Activem la interfície gràfica -->
+    <!-- ATENCIÓ: Per usar la UI cal que afegiu una refència a la dll "C:\Program Files (x86)\WiX Toolset v3.11\bin\WixUIExtension.dll" -->
+    <UIRef Id="WixUI_Mondo" />
+    <UIRef Id="WixUI_ErrorProgressText"/>
+    
+    <!-- Afegim una propietat que indica a WIX que volem modificar la carpeta d'instal·lació -->
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"></Property>
+    
+    <!-- arxiu de llicència -->
+    <WixVariable Id="WixUILicenseRtf" Value="llicencia.rtf" />
+	</Product>
+
+  
+	<Fragment>
+    <!-- Estructura de carpetes a la màquina de DESTI o d'INSTAL·LACIÓ-->
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="ExpenseItApp" >
+          <Directory Id="DIR_HELPFILES" Name="HelpFiles"></Directory>
+        </Directory>
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- Arxiu executable de l'aplició ExpenseItDemo -->
+      <Component Id="CmpMainExecutable">
+        <File Id="FilExpenseIdEXE"   Name="ExpenseItDemo.exe" Source="$(var.ExpenseItDemo.TargetPath)" ></File>
+      </Component>
+      <!-- Arxiu dll de la llibraria EditBoxControlLibrary -->
+      <Component Id="CmpEditBoxControlLibraryDLL">
+        <File Id="FilEditBoxControlLibraryDLL" Name="EditBoxControlLibrary.dll"  Source="$(var.EditBoxControlLibrary.TargetPath)"></File>
+      </Component>
+		</ComponentGroup>
+    <!--ComponentGroup Id="HelpComponents" Directory="DirHelpFiles">
+      
+      <Component Id="CmpIndexHTML">
+        <File Id="FilIndexHTML" Name="index.html" Source="$(var.ExpenseItDemo.ProjectDir)help\index.html"></File>
+      </Component>
+                 
+     </ComponentGroup-->    
+	</Fragment>
+</Wix>
