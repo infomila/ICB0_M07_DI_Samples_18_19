@@ -15,6 +15,8 @@
     <!-- NOTA: Level=1 significa que el feature s'instal·la en la versió "Typical" , a partir de 2 (inclòs) , només s'instal·lent si es fa un "Custom" i es selecciona el component.-->  
 		<Feature Id="ProductFeature" Title="ExpenseItDemo Desktop Aplication" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="CG_ProductShortcuts"/>
+      <ComponentGroupRef Id="CG_SHORCUT_DESKTOP"/>
 		</Feature>
     <Feature Id="HelpFeature" Title="ExpenseItDemo Help Files" Level="2">
       <ComponentGroupRef Id="CG_DocumentationFiles" />
@@ -41,6 +43,14 @@
           <Directory Id="DIR_HELPFILES" Name="HelpFiles"></Directory>
         </Directory>
 			</Directory>
+      
+      <!-- Posem una referència al menú d'inici-->
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="DIR_PMF_EXPENSE_IT" Name="ExpenseIt App"></Directory>
+      </Directory>
+
+      <Directory Id="DesktopFolder"></Directory>
+      
 		</Directory>
 	</Fragment>
 
@@ -52,9 +62,66 @@
       </Component>
       <!-- Arxiu dll de la llibraria EditBoxControlLibrary -->
       <Component Id="CmpEditBoxControlLibraryDLL">
-        <File Id="FilEditBoxControlLibraryDLL" Name="EditBoxControlLibrary.dll"  Source="$(var.EditBoxControlLibrary.TargetPath)"></File>
+        <File Id="FilEditBoxControlLibraryDLL" Name="EditBoxControlLibrary.dll"  
+              Source="$(var.EditBoxControlLibrary.TargetPath)"
+              Assembly=".net"
+              ></File>
+        <!-- Assembly=".net" fa que la dll no es copii a la carpeta sinó a la GAC (Global Assemby Cache) -->
       </Component>
+      
+      
+    
+      
 		</ComponentGroup>
+
+    <!-- Instal·lar l'accés directe de l'executable al menú d'inici -->
+    <ComponentGroup Id="CG_ProductShortcuts" Directory="DIR_PMF_EXPENSE_IT">
+      <Component Id="CMP_AccessDirecteExe_MenuInici" Guid="{94d0df5b-1329-4a25-a564-7f9a1c655e6f}">
+
+        <!-- shorcut a l'executable -->
+        <Shortcut Id="SHR_EXE"
+                  Name="ExpenseIt"
+                  Description="The best expense application in the world!"
+                  Target="[INSTALLFOLDER]ExpenseItDemo.exe"
+                  />
+        <!-- shorcut per desinstal·lar -->
+        <Shortcut Id="SHR_UNINSTALLL"
+                  Name="Unistall ExpenseIt"
+                  Description="Uninstall ExpenseIt asap"
+                  Target="[System64Folder]msiexec.exe"
+                  Arguments="/x [ProductCode]" />
+
+        <RemoveFolder Id="RemoveMyShorcutsDir" On="uninstall"/>
+
+        <RegistryValue Root="HKCU"
+                       Key="Software\MilaEnterprises\ExpenseIt"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+        
+      </Component>      
+    </ComponentGroup>
+
+    <!-- Enllaç directe a l'escriptori: useu Directory="DesktopFolder" que ja és reconegut per WIX -->
+    <ComponentGroup Id="CG_SHORCUT_DESKTOP" Directory="DesktopFolder">
+      <Component Id="CMP_SHORCUT_DESKTOP_EXE"  Guid="{ab9ddb01-bab3-4ed7-914b-2eb613bbc365}">
+        <Shortcut Id="SHC_DESKTOP_EXE"
+                 Name="ExpenseIt App"
+                 Description="ExpenseIt App"
+                 Target="[INSTALLFOLDER]ExpenseItDemo.exe"
+                   />
+         <RegistryValue Root="HKCU"
+                        Key="Software\MilaEnterprises\ExpenseIt"
+                       Name="installedDesktop"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes" />
+        
+      </Component>
+    </ComponentGroup>
+    
+
     <!--ComponentGroup Id="HelpComponents" Directory="DirHelpFiles">
       
       <Component Id="CmpIndexHTML">
