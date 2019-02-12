@@ -22,16 +22,59 @@
       <ComponentGroupRef Id="CG_DocumentationFiles" />
     </Feature>
 
-    <!--Activem la interfície gràfica -->
-    <!-- ATENCIÓ: Per usar la UI cal que afegiu una refència a la dll "C:\Program Files (x86)\WiX Toolset v3.11\bin\WixUIExtension.dll" -->
-    <UIRef Id="WixUI_Mondo" />
-    <UIRef Id="WixUI_ErrorProgressText"/>
+
     
     <!-- Afegim una propietat que indica a WIX que volem modificar la carpeta d'instal·lació -->
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"></Property>
     
     <!-- arxiu de llicència -->
     <WixVariable Id="WixUILicenseRtf" Value="llicencia.rtf" />
+
+    
+    <!-- Definim una propietat per afegir un checkbox opcional que ens permetrà que l'usuari
+      trii si vol obrir l'aplicació en acabar la instal·lació-->
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"
+              Value="Obrir aplicació al acabar."></Property>
+
+    <!--Activem la interfície gràfica -->
+    <!-- ATENCIÓ: Per usar la UI cal que afegiu una refència a la dll "C:\Program Files (x86)\WiX Toolset v3.11\bin\WixUIExtension.dll" -->
+    <UI>
+      <UIRef Id="WixUI_Mondo" />
+      <UIRef Id="WixUI_ErrorProgressText"/>
+      <Publish Dialog="ExitDialog"
+               Control="Finish"
+               Event="DoAction"
+               Value="CA_LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
+    </UI>
+    
+    <!-- Definició de la custom action CA_LaunchApplication, que executarà l'aplicació-->
+    <!--Property Id="WixShellExecTarget" Value="[INSTALLFOLDER]ExpenseItDemo.exe"></Property-->
+    <CustomAction Id="CA_LaunchApplication" 
+                  BinaryKey="WixCA" 
+                  DllEntry="WixShellExec" 
+                  Impersonate="yes"></CustomAction>
+    
+    <!-- Alternativament podem obrir una finestra de documentació -->
+    <Property Id="WixShellExecTarget" Value="[DIR_HELPFILES]index.html"></Property>
+  
+    <!--***************************************************************************-->
+    <!--*****       CUSTOM ACTION PERSONALITZADA QUE ES TROBA AL PROJECTE  ********-->
+    <!--*****       ExpenseItDemo.SetupProject.CustomAction                ********-->
+    <!--***************************************************************************-->
+    
+    <Binary Id="BIN_DLL_CA_ObrirFinestraConfiguracio"
+     SourceFile="$(var.ExpenseItDemo.SetupProject.CustomAction.TargetDir)ExpenseItDemo.SetupProject.CustomAction.CA.dll"></Binary>
+    
+    <CustomAction Id="CA_ObrirFinestraConfiguracio"
+                  BinaryKey="BIN_DLL_CA_ObrirFinestraConfiguracio"
+                  DllEntry="CustomActionMostrarFinestra"
+                  Impersonate="yes"></CustomAction>
+
+    <InstallExecuteSequence>
+      <Custom Action="CA_ObrirFinestraConfiguracio"
+              After="InstallInitialize"></Custom>
+    </InstallExecuteSequence>
+    
 	</Product>
 
   

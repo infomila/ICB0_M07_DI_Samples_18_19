@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "ExpenseItDemo.SetupProject", "ExpenseItDemo.SetupProject\ExpenseItDemo.SetupProject.wixproj", "{24FFB9C0-82BC-4451-9AB1-1D98C5DE9D29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseItDemo.SetupProject.CustomAction", "ExpenseItDemo.SetupProject.CustomAction\ExpenseItDemo.SetupProject.CustomAction.csproj", "{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,12 @@ Global
 		{24FFB9C0-82BC-4451-9AB1-1D98C5DE9D29}.Release|Any CPU.ActiveCfg = Release|x86
 		{24FFB9C0-82BC-4451-9AB1-1D98C5DE9D29}.Release|x86.ActiveCfg = Release|x86
 		{24FFB9C0-82BC-4451-9AB1-1D98C5DE9D29}.Release|x86.Build.0 = Release|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Debug|x86.ActiveCfg = Debug|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Debug|x86.Build.0 = Debug|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Release|Any CPU.ActiveCfg = Release|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Release|x86.ActiveCfg = Release|x86
+		{1FC0B0F9-3539-4EB1-B967-BD9BA8DAEB6D}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
